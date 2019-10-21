@@ -1,7 +1,7 @@
 # UDP-Multiple-Clients-Java
 
 Description: </br></br>
-![alt text](https://png.pngtree.com/element_our/png/20181205/wifi-vector-icon-png_256709.jpg)
+![alt text](https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Ffree-png-vectors%2Fwifi&psig=AOvVaw1eHGnBwMw9ZL_7giNWwxE8&ust=1571771902762000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOD5tOGIruUCFQAAAAAdAAAAABAU)
 Student Project implemented in Java
 
 <h2>Communication n↔1 </h2>
