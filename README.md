@@ -1,7 +1,7 @@
 # UDP-Multiple-Clients-Java
 
 Description: </br></br>
-![alt text](http://www.techieleaf.net/wp-content/uploads/2018/10/voice-search-1792301_1280.png height="200" width ="200")
+![alt text](https://c7.uihere.com/files/242/262/431/discussion-group-computer-icons-social-group-clip-art-communication-thumb.jpg)
 Student Project implemented in Java
 
 <h2>Communication n↔1 </h2>
