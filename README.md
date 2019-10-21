@@ -1,7 +1,7 @@
 # UDP-Multiple-Clients-Java
 
 Description: </br></br>
-![alt text](https://c7.uihere.com/files/242/262/431/discussion-group-computer-icons-social-group-clip-art-communication-thumb.jpg)
+![alt text](https://png.pngtree.com/element_our/png/20181205/wifi-vector-icon-png_256709.jpg)
 Student Project implemented in Java
 
 <h2>Communication n↔1 </h2>
