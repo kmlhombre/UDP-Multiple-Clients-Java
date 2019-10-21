@@ -1,4 +1,4 @@
-<center># UDP Multiple-Clients Java</center>
+# UDP Multiple-Clients Java
 <center>
 ![alt text](http://endlessicons.com/wp-content/uploads/2014/11/wifi-icon-2-214x214.png)
 
