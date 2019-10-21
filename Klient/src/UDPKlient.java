@@ -2,7 +2,8 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
-
+//do zrobienia id sesji klienta
+// + co jesli wysle zly komunikat (stat error)
     public class UDPKlient
     {
 
@@ -26,11 +27,16 @@ import java.util.*;
         private static void accessServer() {
             try {
                 datagramSocket = new DatagramSocket();
-                Scanner userEntry=new Scanner(System.in);
+                Scanner userEntry = new Scanner(System.in);
+                int choose = 0;
                 String message="", response="";
+
                 do {
-                    System.out.println("Wpisz wiadomość:");
-                    message = userEntry.nextLine();
+                    Operacja.pokazMenu();
+                    choose = userEntry.nextInt(); //wybranie opcji z menu
+                    message = Operacja.getKomunikat(choose); //pobranie komunikatu od klienta
+
+                    //ogarnac komunikat przyslany
 
                     if(!message.equals("close")) {//jeżeli klient nie zakończy połączenia
                         sendToPacket = new DatagramPacket(message.getBytes(),message.length(),host,PORT); //stwórz nowy pakiet do wysłania
@@ -50,7 +56,7 @@ import java.util.*;
             }
 
             finally {
-                System.out.println("\n closing connection.... ");
+                System.out.println("\n Rozłączanie klienta... ");
                 datagramSocket.close();
             }
         }
