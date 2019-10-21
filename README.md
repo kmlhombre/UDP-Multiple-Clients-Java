@@ -1,6 +1,7 @@
 # UDP-Multiple-Clients-Java
 
-Description: </br></br>![alt text](http://www.techieleaf.net/wp-content/uploads/2018/10/voice-search-1792301_1280.png "Logo Title Text 1")
+Description: </br></br>
+![alt text](http://www.techieleaf.net/wp-content/uploads/2018/10/voice-search-1792301_1280.png width="200" height="40" "UDP")
 Student Project implemented in Java
 
 Communication n↔1
