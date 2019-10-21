@@ -1,10 +1,10 @@
 # UDP-Multiple-Clients-Java
 
 Description: </br></br>
-![alt text](http://www.techieleaf.net/wp-content/uploads/2018/10/voice-search-1792301_1280.png "UDP)
+![alt text](http://www.techieleaf.net/wp-content/uploads/2018/10/voice-search-1792301_1280.png height="200" width ="200")
 Student Project implemented in Java
 
-Communication n↔1
+<h2>Communication n↔1 </h2>
 UDP Protocol</br>
 
 Fields of header protocol defined as <i>key#value@ (example:oper#multiply@)</i> </br>
