@@ -1,7 +1,7 @@
 # UDP Multiple-Clients Java
 
 ![alt text](http://endlessicons.com/wp-content/uploads/2014/11/wifi-icon-2-214x214.png)
-</br>Student Project implemented in Java
+<h4>Student Project implemented in Java</h4>
 
 <h2>Communication n↔1 UDP Protocol </h2>
 <h3>Fields of header protocol defined as </h3><i>key#value@ (example: oper#multiply@)</i></br>
