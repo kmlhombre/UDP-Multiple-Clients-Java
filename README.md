@@ -6,9 +6,9 @@
 <h3>Fields of header protocol defined as </h3><i>key#value@ (example: oper#multiply@)</i></br>
 <h4>Name of fields: constant, 4 chars</h4>
 - Common header fields and its keys:</br>
-- operation field - "oper"</br>
-- status field-"stat"</br>
-- session number field - "iden"</br>
+- operation field <i>"oper"</i></br>
+- status field <i>"stat"</i></br>
+- session number field <i>"iden" </i></br>
 - other fields developed by programmer</br></br>
 <h4>Functions: </h4> 
 - getting client session number</br>
