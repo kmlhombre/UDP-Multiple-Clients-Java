@@ -1,5 +1,5 @@
-# UDP Multiple-Clients Java
-
+<center># UDP Multiple-Clients Java</center>
+<center>
 ![alt text](http://endlessicons.com/wp-content/uploads/2014/11/wifi-icon-2-214x214.png)
 
 <h2>Communication n↔1 UDP Protocol </h2>
@@ -15,3 +15,4 @@
 - making operation using 3 numbers</br>
 - division, multiplication, addition, substraction</br>
 - server needs to handle multiple clients at once.</br>
+</center>
