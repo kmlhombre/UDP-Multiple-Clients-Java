@@ -1,7 +1,8 @@
 # UDP-Multiple-Clients-Java
 Student Project implemented in Java
+Description:</br></br>
 
-Communication n↔1</br></br>
+Communication n↔1
 UDP Protocol</br>
 Fields of header protocol defined as key#value@(example:oper#multiply@) </br>
 Name of fields: constant, 4 chars</br>
