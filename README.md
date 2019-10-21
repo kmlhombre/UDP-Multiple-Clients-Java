@@ -1,6 +1,6 @@
 # UDP-Multiple-Clients-Java
 
-Description: </br></br>![alt text](https://pixabay.com/pl/vectors/komputer-serwer-sprz%C4%99tu-baza-danych-23341/ "Logo Title Text 1")
+Description: </br></br>![alt text](http://www.techieleaf.net/wp-content/uploads/2018/10/voice-search-1792301_1280.png "Logo Title Text 1")
 Student Project implemented in Java
 
 Communication n↔1
