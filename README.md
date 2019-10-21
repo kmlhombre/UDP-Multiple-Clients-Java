@@ -12,8 +12,7 @@ session number field - "iden"</br>
 other fields developed by programmer</br></br>
 
 Functions:</br>
-getting session number</br>
-making operation using 3 numbers</br>
-division, multiplication, addition, substraction</br></br>
-
-Server handles multiple clients at once.</br>
+*getting session number</br>
+*making operation using 3 numbers</br>
+*division, multiplication, addition, substraction</br></br>
+*server needs to handle multiple clients at once.</br>
