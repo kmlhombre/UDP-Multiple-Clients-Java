@@ -1,7 +1,7 @@
 <h1 align="center"> UDP Multiple-Clients Java </h1>
 <h2  align="center" >Communication n↔1 UDP Protocol </h2>
 
-<div style="margin: 0 auto; width: 100%; width: 100vw">
+<div style="margin: 0 auto; width: 100%; width: 100vw; text-align: center;">
   <img src="http://endlessicons.com/wp-content/uploads/2014/11/wifi-icon-2-214x214.png">
 </div>
 
