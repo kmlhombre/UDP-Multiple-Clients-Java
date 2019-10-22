@@ -19,7 +19,7 @@ import java.util.*;
                 IPAdress = InetAddress.getLocalHost();
             }
             catch(UnknownHostException uhEx) {
-                System.out.println("ID HOSTA nie znaleziono ");
+                System.out.println("ID HOSTA nie znaleziono");
                 System.exit(1);
             }
             accessServer();
@@ -27,13 +27,13 @@ import java.util.*;
         private static void accessServer() {
             try {
                 datagramSocket = new DatagramSocket();
-                Scanner userEntry = new Scanner(System.in);
+              //  Scanner userEntry = new Scanner(System.in);
                 int choose = 0;
                 String messageToSend="", serverResponse="";
 
                 do {
                     Operacja.pokazMenu();
-                    choose = userEntry.nextInt(); //wybranie opcji z menu
+                    choose = Operacja.getWybor(); //wybranie opcji z menu
                     messageToSend = Operacja.getKomunikat(choose); //pobranie komunikatu od klienta
 
                     //ogarnac komunikat przyslany
@@ -50,6 +50,7 @@ import java.util.*;
                         System.out.println(" \n Odpowiedź serwera: " +  serverResponse);
                     }
                 }while(!messageToSend.equals("close")); //jeżeli klient wpisze close zamknięcie gniazda
+
             }
             catch(IOException ioEx) {
                 ioEx.printStackTrace();

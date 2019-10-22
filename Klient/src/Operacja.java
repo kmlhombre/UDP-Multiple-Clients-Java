@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Operacja {
-
+    private static int wybor;
     private static String  OPERACJA = "oper#";
     private static String STATUS = "stat#NULL@";
     private static String IDEN  = "iden#";
@@ -22,11 +22,17 @@ public class Operacja {
         System.out.println("-----------------");
 
     }
-    public static String getKomunikat(int choose){
+    public static int getWybor(){
+        return wybor;
+    }
+    public static String getKomunikat(int wybor){
 
         boolean dzielenie = false;
 
-        switch(choose){
+        Scanner userEntry = new Scanner(System.in);
+        wybor= userEntry.nextInt();
+
+        switch(wybor){
             case 1: {
                 //dodawanie
                 dzialanie+="dodawanie@";
@@ -46,25 +52,22 @@ public class Operacja {
                 //dzielenie
                 dzialanie+="dzielenie@";
                 dzielenie = true;
-                //co jesli pierwsza liczba to zero? napisac
                 break;
             }
             default: System.out.println("Takiej opcji nie ma. Wpisz jeszcze raz");
+            break;
         }
         //USUNĄĆ JEDNEGO HASHA..?
         IDEN += Czas.getGodzina()+ "##"; //doklejenie do iden godziny
-
-        int liczba;
-        Scanner inputScanner = new Scanner(System.in);
-        liczba = inputScanner.nextInt();
+        System.out.println("Podaj trzy liczby");
 
         for (int i = 0; i < 3;) {
             //wprowadzanie liczby do zmiennej tymczasowej
-            liczba = inputScanner.nextInt();
+            wybor = userEntry.nextInt();
             //warunek sprawdzajacy czy dana operacja jest dzieleniem lub, w przypadku dzielenia, sprawdza czy aktualnie ustawiana jest pierwsza liczba (w przypadku dzielenia moze byc to 0)
             if (i == 0 || !dzielenie) {
                 //wpisanie liczby do operacji iden
-                IDEN += Integer.toString(liczba);
+                IDEN += Integer.toString(wybor);
                 IDEN += (i != 2) ? "#" : "@";
                 i++;
             }
@@ -72,8 +75,8 @@ public class Operacja {
                 //wykrycie czy dana operacja jest dzieleniem
                 if (dzielenie) {
                     //wykrycie czy zostalo wpisane 0 dla drugiej lub trzeciej liczby, jesli nie, liczba zostanie dopisana, jesli tak, krok dopisania zostanie pominiety
-                    if ( liczba != 0) {
-                        IDEN += Integer.toString( liczba);
+                    if ( wybor!= 0) {
+                        IDEN += Integer.toString(wybor);
                         IDEN += (i != 2) ? "#" : "@";
                         i++;
                     }
