@@ -43,8 +43,10 @@ import java.net.*;
                     System.out.print(clientAddress);
                     System.out.print(" : ");
                     System.out.println(messageReceived);
-                    numMessages++;
-                    messageSendTo= "Wiadomosc numer: " + numMessages + ": " + messageReceived;
+                    //numMessages++;
+                    //messageSendTo= "Wiadomosc numer: " + numMessages + ": " + messageReceived;
+                    Operacja operacja = new Operacja(messageReceived);
+                    messageSendTo = Operacja.createMessage();
                     sendToPacket=new DatagramPacket(messageSendTo.getBytes(),messageSendTo.length(), clientAddress,clientPort); //stworzenie pakietu do wysłania
                     datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta
 
