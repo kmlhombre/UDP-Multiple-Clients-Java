@@ -69,7 +69,15 @@ public class Operacja {
     public String createMessage() {
         calculateResultAndGetOPERACJAString();
 
-        message += OPERACJA + "stat#OK@iden#" + UDPSerwer.getIdForUser()+ "#" + Czas.getGodzina() + "#";
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(KOMUNIKAT);
+        String id = "";
+
+        if(m.find()) {
+            id = m.group();
+        }
+
+        message += OPERACJA + "stat#OK@iden#" + id + "#" + Czas.getGodzina() + "#";
         message += Float.toString(result) + "@";
 
         System.out.println(message);
