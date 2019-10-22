@@ -13,6 +13,8 @@ import java.net.*;
         private static DatagramPacket receivedPacket, sendToPacket;
         private static byte[] buffer;
         private static int BUFFER_SIZE = 128;
+        //id
+        private static String ID_USER = "default";
 
         public static void main(String[] args) {
             try { //ustawienie adresu hosta
@@ -32,9 +34,10 @@ import java.net.*;
                 String messageToSend="", serverResponse="";
 
                 do {
-                    Operacja.pokazMenu();
-                    choose = Operacja.getWybor(); //wybranie opcji z menu
-                    messageToSend = Operacja.getKomunikat(choose); //pobranie komunikatu od klienta
+                    Operacja operacja = new Operacja(ID_USER);
+                    operacja.pokazMenu();
+                    choose = operacja.getWybor(); //wybranie opcji z menu
+                    messageToSend = operacja.getKomunikat(choose); //pobranie komunikatu od klienta
 
                     //ogarnac komunikat przyslany
 

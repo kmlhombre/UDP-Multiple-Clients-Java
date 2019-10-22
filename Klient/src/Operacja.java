@@ -6,14 +6,17 @@ public class Operacja {
     private static String komunikat;
     private static Scanner userEntry;
     private static boolean dzielenie;
+    //id
+    private static String id;
 
     private static String OPERACJA = "oper#";
     private static String STATUS = "stat#NULL@";
     private static String IDEN = "iden#";
 
-    public Operacja() {
+    public Operacja(String ID) {
         dzielenie = false;
         komunikat = "";
+        id = ID;
     }
     private void setDefaults(){
         OPERACJA = "oper#";
@@ -43,7 +46,7 @@ public class Operacja {
         boolean errorFlag = false;
         userEntry = new Scanner(System.in);
         wybor = userEntry.nextInt();
-        IDEN += Czas.getGodzina() + "#"; //doklejenie do pola iden godziny
+        IDEN += id + "#" + Czas.getGodzina() + "#"; //doklejenie do pola iden godziny
 
     switch (wybor) {
         case 1: {
