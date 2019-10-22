@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d57ee84e-c36d-4976-bc30-2f70d50428c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Klient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Klient/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/src/Operacja.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Klient/src/UDPKlient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/src/UDPKlient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -101,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1571679857354</updated>
       <workItem from="1571730201976" duration="4215000" />
-      <workItem from="1571770375578" duration="1859000" />
+      <workItem from="1571770375578" duration="2481000" />
     </task>
     <servers />
   </component>

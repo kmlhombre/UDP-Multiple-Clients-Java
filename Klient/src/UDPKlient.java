@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 
 //do zrobienia id sesji klienta
 
@@ -33,6 +34,12 @@ import java.net.*;
                 int choose = 0;
                 String messageToSend="", serverResponse="";
 
+                //prośba o ID
+                messageToSend = "oper#id@";
+                sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
+                datagramSocket.send(sendToPacket);
+                buffer = new byte[BUFFER_SIZE];
+                    
                 do {
                     Operacja operacja = new Operacja(ID_USER);
                     operacja.pokazMenu();
