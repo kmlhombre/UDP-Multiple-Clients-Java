@@ -3,6 +3,8 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 //do zrobienia nadawanie id klientom, jeśli klient zakończy transmisję id zostaje przydzielone znowu do obiegu
 //wszystkie konfiguracje z komunikatem
 // na jaką komendę zatrzymujemy działanie serwera/klienta
@@ -48,6 +50,11 @@ import java.util.LinkedList;
             return tempId;
         }
 
+        private static void setIdEmpty(int id) {
+            ID[id] = false;
+            counterUsers--;
+        }
+
         private static void handleClient() {
             try {
                 String messageReceived, messageSendTo;
@@ -62,13 +69,20 @@ import java.util.LinkedList;
                     clientAddress = receivedPacket.getAddress(); //adres klienta
                     clientPort = receivedPacket.getPort(); //port klienta
 
-
                     messageReceived = new String(receivedPacket.getData(),0,receivedPacket.getLength());
 
                     if(messageReceived.equals("oper#id@")) {
                         messageSendTo = "oper#id#" + getIdForUser() + "@";
                         sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort);
                         datagramSocket.send(sendToPacket);
+                    }
+                    else if((Pattern.compile("oper#close@")).matcher(messageReceived).find()) {
+                        Pattern p = Pattern.compile("\\d+");
+                        Matcher m = p.matcher(messageReceived);
+                        if(m.find()) {
+                            int temp = Integer.parseInt(m.group());
+                            setIdEmpty(temp);
+                        }
                     }
                     else {
                         Operacja operacja = new Operacja(messageReceived);
