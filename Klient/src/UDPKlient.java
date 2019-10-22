@@ -1,11 +1,9 @@
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//do zrobienia id sesji klienta
 
     public class UDPKlient
     {
@@ -58,9 +56,7 @@ import java.util.regex.Pattern;
                     Operacja operacja = new Operacja(ID_USER);
                     operacja.pokazMenu();
                     choose = operacja.getWybor(); //wybranie opcji z menu
-                    messageToSend = operacja.getKomunikat(choose); //pobranie komunikatu od klienta
-
-                    //ogarnac komunikat przyslany
+                    messageToSend = operacja.getKomunikat(choose); //pobranie komunikatu od klienta33
 
                     if(!messageToSend.equals("close")) {//jeżeli klient nie zakończy połączenia
                         sendToPacket = new DatagramPacket(messageToSend.getBytes(),messageToSend.length(),IPAdress,PORT); //stwórz nowy pakiet do wysłania

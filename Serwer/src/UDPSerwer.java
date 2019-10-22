@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 //do zrobienia nadawanie id klientom, jeśli klient zakończy transmisję id zostaje przydzielone znowu do obiegu
 //wszystkie konfiguracje z komunikatem
-// na jaką komendę zatrzymujemy działanie serwera/klienta
+//id nie działa bo się inkrementuje jak wysłane wiadomości
 
     public class UDPSerwer
     {
@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
             handleClient();
         }
 
-        private static int getIdForUser() {
+        public static int getIdForUser() {
             int tempId = 0;
             for(int i=0; i<16; i++) {
                 if(!ID[i]) {
@@ -84,6 +84,10 @@ import java.util.regex.Pattern;
                             setIdEmpty(temp);
                         }
                     }
+                    else if((Pattern.compile("oper#ERROR@")).matcher(messageReceived).find()) {
+                      //? co odesłać, jaki komunikat,?
+                        //oper#stat#ERROR@iden#3#23:52@
+                    }
                     else {
                         Operacja operacja = new Operacja(messageReceived);
 
@@ -92,7 +96,7 @@ import java.util.regex.Pattern;
                         System.out.println(messageReceived);
 
                         messageSendTo = operacja.createMessage();
-
+                        System.out.println(messageSendTo);
 
                         sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort); //stworzenie pakietu do wysłania
                         datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta

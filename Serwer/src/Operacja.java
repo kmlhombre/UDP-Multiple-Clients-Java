@@ -69,7 +69,7 @@ public class Operacja {
     public String createMessage() {
         calculateResultAndGetOPERACJAString();
 
-        message += OPERACJA + "stat#OK@iden#" + Czas.getGodzina() + "#";
+        message += OPERACJA + "stat#OK@iden#" + UDPSerwer.getIdForUser()+ "#" + Czas.getGodzina() + "#";
         message += Float.toString(result) + "@";
 
         System.out.println(message);
