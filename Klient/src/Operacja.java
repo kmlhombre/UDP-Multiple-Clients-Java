@@ -40,7 +40,7 @@ public class Operacja {
     }
 
     public static String getKomunikat(int wybor) { //tworzenie komunikatu do wysłania
-
+        boolean errorFlag = false;
         userEntry = new Scanner(System.in);
         wybor = userEntry.nextInt();
         IDEN += Czas.getGodzina() + "#"; //doklejenie do pola iden godziny
@@ -48,24 +48,28 @@ public class Operacja {
     switch (wybor) {
         case 1: {
             //dodawanie
+            errorFlag=false;
             OPERACJA += "dodawanie@";
             getLiczby();
             break;
         }
         case 2: {
             //odejmowanie
+            errorFlag=false;
             OPERACJA += "odejmowanie@";
             getLiczby();
             break;
         }
         case 3: {
             //mnożenie
+            errorFlag=false;
             OPERACJA += "mnozenie@";
             getLiczby();
             break;
         }
         case 4: {
             //dzielenie
+            errorFlag=false;
             OPERACJA += "dzielenie@";
             dzielenie = true;
             getLiczby();
@@ -73,13 +77,17 @@ public class Operacja {
         }
         default:
             System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
+            errorFlag=true;
     }
-
-
-
+    if(errorFlag){
+        komunikat = OPERACJA + "ERROR@";
+    }
+    else{
         komunikat = OPERACJA + STATUS + IDEN;
+    }
         setDefaultTextOfStatement();
         return komunikat;
+
     }
     private static void getLiczby(){
         System.out.println("Podaj trzy liczby");
