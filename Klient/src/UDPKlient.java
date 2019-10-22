@@ -2,6 +2,8 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //do zrobienia id sesji klienta
 
@@ -46,7 +48,11 @@ import java.util.ArrayList;
                 serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
                 //regex aby otrzymac id
-                
+                Pattern pattern = Pattern.compile("\\d+");
+                Matcher matcher = pattern.matcher(serverResponse);
+                if(matcher.find()) {
+                    ID_USER = matcher.group();
+                }
 
                 do {
                     Operacja operacja = new Operacja(ID_USER);

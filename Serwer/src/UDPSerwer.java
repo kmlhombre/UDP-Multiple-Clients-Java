@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 //do zrobienia nadawanie id klientom, jeśli klient zakończy transmisję id zostaje przydzielone znowu do obiegu
 //wszystkie konfiguracje z komunikatem
 // na jaką komendę zatrzymujemy działanie serwera/klienta
@@ -12,6 +13,9 @@ import java.net.*;
         private static DatagramPacket receivedPacket, sendToPacket;
         private static byte[] buffer ;
         private static int BUFFER_SIZE = 128;
+
+        private ArrayList<Boolean> ID = new ArrayList<>();
+        private static int counterUsers = 0;
 
         public static void main(String[] args)
         {
@@ -25,6 +29,26 @@ import java.net.*;
             }
             handleClient();
         }
+
+        private int getIdForUser() {
+            int tempId = 0;
+            if(ID.size() == counterUsers) {
+                ID.add(true);
+                tempId = counterUsers;
+                counterUsers++;
+            }
+            else {
+                for(int i=0; i<ID.size(); i++) {
+                    if(!ID.get(i)) {
+                        tempId = i;
+                        ID.set(i, true);
+                        break;
+                    }
+                }
+            }
+            return tempId; //przed otrzymaniem i wyslaniem wiadomosci trzeba cos zrobic xd
+        }
+
         private static void handleClient() {
             try {
                 String messageReceived, messageSendTo;

@@ -66,8 +66,7 @@ public class Operacja {
 
     }
 
-    public  String createMessage() {
-
+    public String createMessage() {
         calculateResultAndGetOPERACJAString();
 
         message += OPERACJA + "stat#OK@iden#" + Czas.getGodzina() + "#";
@@ -76,6 +75,5 @@ public class Operacja {
         System.out.println(message);
         setDefaultTextOfStatement();
         return message;
-
     }
 }
