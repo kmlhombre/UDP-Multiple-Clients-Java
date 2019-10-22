@@ -31,26 +31,18 @@ public class Operacja {
         //regex wykrywajacy 3 liczby w otrzymanym komunikacie od klienta
         Pattern p = Pattern.compile("\\d+#\\d+#\\d+@");
         Matcher m = p.matcher(Operacja.KOMUNIKAT);
-   //
-   //
-   //
-      //
-        while(m.find()) {
-            if(counter>3) {
-                liczby[counter-3] = Integer.parseInt(m.group());
-                System.out.println(liczby);
+
+        if(m.find()) {
+            String temp = m.group();
+            p = Pattern.compile("\\d+");
+            m = p.matcher(temp);
+
+            while(m.find()) {
+                liczby[counter] = Integer.parseInt(m.group());
+                counter++;
             }
-            counter++;
         }
 
-        for(int i=0; i<3; i++){
-            System.out.println("pokazuje liczby tablica " +liczby[i]);
-    }
-//
-        //
-        //
-
-        //if(temp.equals("mn")) {
         if((Pattern.compile("mnozenie")).matcher(Operacja.KOMUNIKAT).find()) {
             result = liczby[0] * liczby[1] * liczby[2];
             System.out.println(result);
@@ -74,8 +66,7 @@ public class Operacja {
 
     }
 
-    public  String createMessage() {
-
+    public String createMessage() {
         calculateResultAndGetOPERACJAString();
 
         message += OPERACJA + "stat#OK@iden#" + Czas.getGodzina() + "#";
@@ -84,6 +75,5 @@ public class Operacja {
         System.out.println(message);
         setDefaultTextOfStatement();
         return message;
-
     }
 }
