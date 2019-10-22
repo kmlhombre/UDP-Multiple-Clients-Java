@@ -1,16 +1,9 @@
 <h1 align="center"> UDP Multiple-Clients Java </h1>
 <h2  align="center" >Communication n↔1 UDP Protocol </h2>
 
-<style>
-  .container {
-    width: 100%;
-  margin: 0 auto;
-  }
-</style>
-
-<div class="container">
+<p align="center">
   <img src="http://endlessicons.com/wp-content/uploads/2014/11/wifi-icon-2-214x214.png">
-</div>
+</p>
 
 <h3>Fields of header protocol defined as </h3><i>key#value@ (example: oper#multiply@)</i>
 
