@@ -7,7 +7,7 @@ import java.util.*;
     public class UDPKlient
     {
 
-        private static InetAddress host;
+        private static InetAddress IPAdress;
         private static final int PORT = 8000;
         private static DatagramSocket datagramSocket;
         private static DatagramPacket receivedPacket, sendToPacket;
@@ -16,7 +16,7 @@ import java.util.*;
 
         public static void main(String[] args) {
             try { //ustawienie adresu hosta
-                host = InetAddress.getLocalHost();
+                IPAdress = InetAddress.getLocalHost();
             }
             catch(UnknownHostException uhEx) {
                 System.out.println("ID HOSTA nie znaleziono ");
@@ -29,27 +29,27 @@ import java.util.*;
                 datagramSocket = new DatagramSocket();
                 Scanner userEntry = new Scanner(System.in);
                 int choose = 0;
-                String message="", response="";
+                String messageToSend="", serverResponse="";
 
                 do {
                     Operacja.pokazMenu();
                     choose = userEntry.nextInt(); //wybranie opcji z menu
-                    message = Operacja.getKomunikat(choose); //pobranie komunikatu od klienta
+                    messageToSend = Operacja.getKomunikat(choose); //pobranie komunikatu od klienta
 
                     //ogarnac komunikat przyslany
 
-                    if(!message.equals("close")) {//jeżeli klient nie zakończy połączenia
-                        sendToPacket = new DatagramPacket(message.getBytes(),message.length(),host,PORT); //stwórz nowy pakiet do wysłania
+                    if(!messageToSend.equals("close")) {//jeżeli klient nie zakończy połączenia
+                        sendToPacket = new DatagramPacket(messageToSend.getBytes(),messageToSend.length(),IPAdress,PORT); //stwórz nowy pakiet do wysłania
                         datagramSocket.send(sendToPacket);// wyślij pakiet do serwera
                         buffer = new byte[BUFFER_SIZE];
 
                         receivedPacket = new DatagramPacket(buffer,buffer.length); //odpowiedź od serwera
                         datagramSocket.receive(receivedPacket);
-                        response = new String(receivedPacket.getData(),0, receivedPacket.getLength());
+                        serverResponse = new String(receivedPacket.getData(),0, receivedPacket.getLength());
 
-                        System.out.println(" \n Odpowiedź serwera: " + response);
+                        System.out.println(" \n Odpowiedź serwera: " +  serverResponse);
                     }
-                }while(!message.equals("close")); //jeżeli klient wpisze close zamknięcie gniazda
+                }while(!messageToSend.equals("close")); //jeżeli klient wpisze close zamknięcie gniazda
             }
             catch(IOException ioEx) {
                 ioEx.printStackTrace();

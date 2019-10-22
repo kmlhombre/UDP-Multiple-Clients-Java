@@ -27,7 +27,7 @@ import java.net.*;
         }
         private static void handleClient() {
             try {
-                String messageIn, messageOut;
+                String messageReceived, messageSendTo;
                 int numMessages = 0; //ilość odebranych wiadomości przez serwer
                 InetAddress clientAddress = null;
                 int clientPort;
@@ -38,14 +38,14 @@ import java.net.*;
                     datagramSocket.receive(receivedPacket); //odebranie wiadomości od klienta
                     clientAddress = receivedPacket.getAddress(); //adres klienta
                     clientPort = receivedPacket.getPort(); //port klienta
-                    messageIn =new String(receivedPacket.getData(),0,receivedPacket.getLength());
+                    messageReceived =new String(receivedPacket.getData(),0,receivedPacket.getLength());
 
                     System.out.print(clientAddress);
                     System.out.print(" : ");
-                    System.out.println(messageIn);
+                    System.out.println(messageReceived);
                     numMessages++;
-                    messageOut= "Wiadomosc numer: " + numMessages + ": " + messageIn;
-                    sendToPacket=new DatagramPacket(messageOut.getBytes(),messageOut.length(), clientAddress,clientPort); //stworzenie pakietu do wysłania
+                    messageSendTo= "Wiadomosc numer: " + numMessages + ": " + messageReceived;
+                    sendToPacket=new DatagramPacket(messageSendTo.getBytes(),messageSendTo.length(), clientAddress,clientPort); //stworzenie pakietu do wysłania
                     datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta
 
                 }while(true);
