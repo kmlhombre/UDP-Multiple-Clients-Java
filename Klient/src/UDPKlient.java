@@ -73,6 +73,12 @@ import java.util.regex.Pattern;
 
                         System.out.println(" \n Odpowiedź serwera: " +  serverResponse);
                     }
+                    else {
+                        messageToSend = "oper#close@iden#" + ID_USER + "@";
+                        sendToPacket = new DatagramPacket(messageToSend.getBytes(),messageToSend.length(),IPAdress,PORT); //stwórz nowy pakiet do wysłania
+                        datagramSocket.send(sendToPacket);// wyślij pakiet do serwera
+                        buffer = new byte[BUFFER_SIZE];
+                    }
                 }while(!messageToSend.equals("close")); //jeżeli klient wpisze close zamknięcie gniazda
 
             }
