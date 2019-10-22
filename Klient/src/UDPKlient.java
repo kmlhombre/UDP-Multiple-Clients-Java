@@ -8,7 +8,7 @@ import java.net.*;
     {
 
         private static InetAddress IPAdress;
-        private static final int PORT = 8000;
+        private static final int PORT = 8001;
         private static DatagramSocket datagramSocket;
         private static DatagramPacket receivedPacket, sendToPacket;
         private static byte[] buffer;

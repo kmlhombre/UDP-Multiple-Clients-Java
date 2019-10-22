@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d57ee84e-c36d-4976-bc30-2f70d50428c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Klient/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/.idea/src.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Klient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Czas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/META-INF/UDPKlient.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/UDPKlient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/UDPKlient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Klient/src/UDPKlient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/src/UDPKlient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Serwer/META-INF/Serwer.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Serwer/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/Czas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Serwer/UDPSerwer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/UDPSerwer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Operacja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UDPSerwer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UDPSerwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UDPSerwer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,6 +33,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Alicja" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
@@ -114,10 +121,22 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="cleared comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleared comments" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Serwer$UDPSerwer.ic" NAME="UDPSerwer Coverage Results" MODIFIED="1571759524716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.company.*</FILTER>
+    </SUITE>
   </component>
 </project>
