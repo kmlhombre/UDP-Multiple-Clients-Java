@@ -3,7 +3,8 @@
 ![alt text](http://endlessicons.com/wp-content/uploads/2014/11/wifi-icon-2-214x214.png)
 
 <h2 align="center">Communication n↔1 UDP Protocol </h2>
-<h3 align="center">Fields of header protocol defined as </h3><i>key#value@ (example: oper#multiply@)</i></br>
+<h3>Fields of header protocol defined as </h3><i>key#value@ (example: oper#multiply@)</i></br>
+
 <h4 align="center">Name of fields: constant, 4 chars</h4>
 <p align="center">Common header fields and its keys: </p></br>
 <p align="center">operation field <i>"oper"</i></p></br>
