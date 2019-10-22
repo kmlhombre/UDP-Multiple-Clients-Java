@@ -39,7 +39,15 @@ import java.util.ArrayList;
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
                 buffer = new byte[BUFFER_SIZE];
-                    
+
+                //otrzymanie pakietu z id
+                receivedPacket = new DatagramPacket(buffer, buffer.length);
+                datagramSocket.receive(receivedPacket);
+                serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
+
+                //regex aby otrzymac id
+                
+
                 do {
                     Operacja operacja = new Operacja(ID_USER);
                     operacja.pokazMenu();
