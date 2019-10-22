@@ -7,18 +7,17 @@
 
 <h3>Name of fields: constant, 4 chars</h3>
 
-<ul>Common header fields and its keys: 
+Common header fields and its keys</br>
 <li>operation field <i>"oper"</i></li>
 <li>status field <i>"stat"</i></li>
 <li>session number field <i>"iden" </i></li>
 <li>other fields developed by programmer</li>
-</ul>
 
-<ul >Functions:
+
+Functions</br>
 <li>getting client session number</li>
 <li>making operation using 3 numbers</li>
 <li>division, multiplication, addition, substraction</li>
 <li>server needs to handle multiple clients at once</li>
-</ul>
 
 <p font size="6"><i>created with kmlhombre</i></p>
