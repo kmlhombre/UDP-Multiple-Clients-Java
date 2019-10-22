@@ -1,9 +1,9 @@
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
+
 //do zrobienia id sesji klienta
-// + co jesli wysle zly komunikat (stat error)
+
     public class UDPKlient
     {
 
