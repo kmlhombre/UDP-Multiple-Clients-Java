@@ -2,6 +2,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 //do zrobienia nadawanie id klientom, jeśli klient zakończy transmisję id zostaje przydzielone znowu do obiegu
 //wszystkie konfiguracje z komunikatem
 // na jaką komendę zatrzymujemy działanie serwera/klienta
@@ -14,11 +15,15 @@ import java.util.ArrayList;
         private static byte[] buffer ;
         private static int BUFFER_SIZE = 128;
 
-        private ArrayList<Boolean> ID = new ArrayList<>();
+        private static Boolean[] ID = new Boolean[16];
         private static int counterUsers = 0;
 
         public static void main(String[] args)
         {
+            for(int i=0; i<16; i++) {
+                ID[i] = false;
+            }
+
             System.out.println("Otwieranie portu\n");
             try {
                 datagramSocket = new DatagramSocket(PORT);
@@ -30,23 +35,17 @@ import java.util.ArrayList;
             handleClient();
         }
 
-        private int getIdForUser() {
+        private static int getIdForUser() {
             int tempId = 0;
-            if(ID.size() == counterUsers) {
-                ID.add(true);
-                tempId = counterUsers;
-                counterUsers++;
-            }
-            else {
-                for(int i=0; i<ID.size(); i++) {
-                    if(!ID.get(i)) {
-                        tempId = i;
-                        ID.set(i, true);
-                        break;
-                    }
+            for(int i=0; i<16; i++) {
+                if(!ID[i]) {
+                    tempId = i;
+                    ID[i] = true;
+                    counterUsers++;
+                    break;
                 }
             }
-            return tempId; //przed otrzymaniem i wyslaniem wiadomosci trzeba cos zrobic xd
+            return tempId;
         }
 
         private static void handleClient() {
@@ -54,6 +53,7 @@ import java.util.ArrayList;
                 String messageReceived, messageSendTo;
                 InetAddress clientAddress = null;
                 int clientPort;
+
                 do
                 {
                     buffer = new byte[BUFFER_SIZE];
@@ -64,18 +64,25 @@ import java.util.ArrayList;
 
 
                     messageReceived = new String(receivedPacket.getData(),0,receivedPacket.getLength());
-                    Operacja operacja = new Operacja(messageReceived);
 
-                    System.out.print(clientAddress);
-                    System.out.print(" : ");
-                    System.out.println(messageReceived);
+                    if(messageReceived.equals("oper#id@")) {
+                        messageSendTo = "oper#id#" + getIdForUser() + "@";
+                        sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort);
+                        datagramSocket.send(sendToPacket);
+                    }
+                    else {
+                        Operacja operacja = new Operacja(messageReceived);
 
-                    messageSendTo = operacja.createMessage();
+                        System.out.print(clientAddress);
+                        System.out.print(" : ");
+                        System.out.println(messageReceived);
+
+                        messageSendTo = operacja.createMessage();
 
 
-                    sendToPacket=new DatagramPacket(messageSendTo.getBytes(),messageSendTo.length(), clientAddress,clientPort); //stworzenie pakietu do wysłania
-                    datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta
-
+                        sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort); //stworzenie pakietu do wysłania
+                        datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta
+                    }
                 }while(true);
             }
             catch(IOException ioEx) {
