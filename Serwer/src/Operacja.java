@@ -26,20 +26,20 @@ public class Operacja {
         IDEN= "iden#";
     }
     private void calculateResultAndGetOPERACJAString() {
-        int[] liczby = new int[3];
+        float[] liczby = new float[3];
         int counter = 0;
 
         //regex wykrywajacy 3 liczby w otrzymanym komunikacie od klienta
-        Pattern p = Pattern.compile("\\d+#\\d+#\\d+@");
+        Pattern p = Pattern.compile("\\d+\\.*\\d*#\\d+\\.*\\d*#\\d\\.*\\d*@");
         Matcher m = p.matcher(Operacja.KOMUNIKAT);
 
         if(m.find()) {
             String temp = m.group();
-            p = Pattern.compile("\\d+");
+            p = Pattern.compile("\\d+\\.*\\d*");
             m = p.matcher(temp);
 
             while(m.find()) {
-                liczby[counter] = Integer.parseInt(m.group());
+                liczby[counter] = Float.parseFloat(m.group());
                 counter++;
             }
         }

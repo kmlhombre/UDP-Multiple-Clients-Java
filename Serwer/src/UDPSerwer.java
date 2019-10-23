@@ -1,4 +1,6 @@
 
+import javafx.css.Match;
+
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -102,8 +104,20 @@ import java.util.regex.Pattern;
                         }
                     }
                     else if(Pattern.compile("oper#ERROR@").matcher(messageReceived).find()) {
-                      //? co odesłać, jaki komunikat,?
-                        //oper#stat#ERROR@iden#3#23:52@
+                        //oper#error@stat#null@iden#3#23:52@
+
+                        System.out.print(clientAddress);
+                        System.out.print(" : ");
+                        System.out.println(messageReceived);
+
+                        Pattern p = Pattern.compile("\\d+");
+                        Matcher m = p.matcher(messageReceived);
+                        if(m.find()) {
+                            int temp_id = Integer.parseInt(m.group());
+                            messageSendTo = "oper#error@stat#ok@iden#" + temp_id + "#" + Czas.getGodzina() + "@";
+                            sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort); //stworzenie pakietu do wysłania
+                            datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta
+                        }
                     }
                     else {
                         Operacja operacja = new Operacja(messageReceived);

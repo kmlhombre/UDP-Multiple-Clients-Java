@@ -83,7 +83,7 @@ public class Operacja {
             errorFlag=true;
     }
     if(errorFlag){
-        komunikat = OPERACJA + "ERROR@";
+        komunikat = OPERACJA + "ERROR@" + STATUS + "null@" + IDEN;
     }
     else{
         komunikat = OPERACJA + STATUS + IDEN;
@@ -94,22 +94,22 @@ public class Operacja {
     }
     private static void getLiczby(){
         System.out.println("Podaj trzy liczby");
-
+        float liczba;
         for (int i = 0; i < 3; ) {
-            wybor = userEntry.nextInt();    //wprowadzanie liczby do zmiennej tymczasowej
+            liczba = userEntry.nextFloat();    //wprowadzanie liczby do zmiennej tymczasowej
 
             //warunek sprawdzajacy czy dana operacja jest dzieleniem lub, w przypadku dzielenia, sprawdza czy aktualnie ustawiana jest pierwsza liczba (w przypadku dzielenia moze byc to 0)
             if (i == 0 || !dzielenie) {
                 //wpisanie liczby do operacji iden
-                IDEN += Integer.toString(wybor);
+                IDEN += Float.toString(liczba);
                 IDEN += (i != 2) ? "#" : "@";
                 i++;
             } else {
 
                 if (dzielenie) { //wykrycie czy dana operacja jest dzieleniem
                     //wykrycie czy zostalo wpisane 0 dla drugiej lub trzeciej liczby, jesli nie, liczba zostanie dopisana, jesli tak, krok dopisania zostanie pominiety
-                    if (wybor != 0) {
-                        IDEN += Integer.toString(wybor);
+                    if (liczba != 0) {
+                        IDEN += Float.toString(liczba);
                         IDEN += (i != 2) ? "#" : "@";
                         i++;
                     } else {
