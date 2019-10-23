@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-//linia 38 funkcja do poprawy nie wyciąga liczb z regexa
 
 public class Operacja {
 
