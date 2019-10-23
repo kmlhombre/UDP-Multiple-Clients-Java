@@ -76,9 +76,9 @@ public class Operacja {
         if(m.find()) {
             ID = m.group();
         }
-
+        //to id jest chyba okej bo przypisuje sobie na samym początku
         message += OPERACJA + "stat#OK@iden#" + ID + "#" + Czas.getGodzina() + "#";
-        message += Float.toString(result) + "@";
+        message += result + "@";
 
         //System.out.println(message);
         setDefaultTextOfStatement();
