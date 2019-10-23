@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Operacja {
@@ -6,6 +5,7 @@ public class Operacja {
     private static String komunikat;
     private static Scanner userEntry;
     private static boolean dzielenie;
+    private static boolean closed;
     //id
     private static String id;
 
@@ -15,84 +15,101 @@ public class Operacja {
 
     public Operacja(String ID) {
         dzielenie = false;
+        closed = false;
         komunikat = "";
         id = ID;
     }
-    private void setDefaults(){
-        OPERACJA = "oper#";
-        IDEN = "iden#";
-    }
-    private static void setDefaultTextOfStatement(){ //zresetowanie pola operacja i iden
+
+    private void setDefaults() {
         OPERACJA = "oper#";
         IDEN = "iden#";
     }
 
-    public static void pokazMenu() { //wyświetlenie menu
+    private static void setDefaultTextOfStatement() { //zresetowanie pola operacja i iden
+        OPERACJA = "oper#";
+        IDEN = "iden#";
+
+    }
+
+    void pokazMenu() { //wyświetlenie menu
         System.out.println("Jaka operacja? ");
         System.out.println("--------------- ");
+        System.out.println("0. Zakończ ");
         System.out.println("1. Dodawanie ");
-        System.out.println("2. Odejmowanie? ");
+        System.out.println("2. Odejmowanie");
         System.out.println("3. Mnozenie ");
         System.out.println("4. Dzielenie ");
         System.out.println("-----------------");
 
     }
 
-    public static int getWybor() { //zwraca numer wybranego działania wybrany przez użytkownika
+    int getWybor() { //zwraca numer wybranego działania wybrany przez użytkownika
         return wybor;
     }
 
-    public static String getKomunikat(int wybor) { //tworzenie komunikatu do wysłania
+    public String getKomunikat(int wybor) { //tworzenie komunikatu do wysłania
         boolean errorFlag = false;
         userEntry = new Scanner(System.in);
         wybor = userEntry.nextInt();
         IDEN += id + "#" + Czas.getGodzina() + "#"; //doklejenie do pola iden godziny
 
-    switch (wybor) {
-        case 1: {
-            //dodawanie
-            errorFlag=false;
-            OPERACJA += "dodawanie@";
-            getLiczby();
-            break;
+        switch (wybor) {
+            case 0: {
+                closed = true;
+                errorFlag = true;
+                break;
+            }
+            case 1: {
+                //dodawanie
+                errorFlag = false;
+                OPERACJA += "dodawanie@";
+                getLiczby();
+                break;
+            }
+            case 2: {
+                //odejmowanie
+                errorFlag = false;
+                OPERACJA += "odejmowanie@";
+                getLiczby();
+                break;
+            }
+            case 3: {
+                //mnożenie
+                errorFlag = false;
+                OPERACJA += "mnozenie@";
+                getLiczby();
+                break;
+            }
+            case 4: {
+                //dzielenie
+                errorFlag = false;
+                OPERACJA += "dzielenie@";
+                dzielenie = true;
+                getLiczby();
+                break;
+            }
+            default:
+                System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
+                errorFlag = true;
         }
-        case 2: {
-            //odejmowanie
-            errorFlag=false;
-            OPERACJA += "odejmowanie@";
-            getLiczby();
-            break;
-        }
-        case 3: {
-            //mnożenie
-            errorFlag=false;
-            OPERACJA += "mnozenie@";
-            getLiczby();
-            break;
-        }
-        case 4: {
-            //dzielenie
-            errorFlag=false;
-            OPERACJA += "dzielenie@";
-            dzielenie = true;
-            getLiczby();
-            break;
-        }
-        default:
-            System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
-            errorFlag=true;
-    }
-    if(errorFlag){
-        komunikat = OPERACJA + "ERROR@" + STATUS + "null@" + IDEN;
-    }
-    else{
-        komunikat = OPERACJA + STATUS + IDEN;
-    }
-        setDefaultTextOfStatement();
-        return komunikat;
 
+        if (errorFlag) {
+            if (closed) {
+                komunikat = OPERACJA + "CLOSE@";
+            } else {
+                komunikat = OPERACJA + "ERROR@" + STATUS + "null@" + IDEN;
+            }
+
+        } else {
+            komunikat = OPERACJA + STATUS + IDEN;
+        }
+
+        setDefaultTextOfStatement();
+        System.out.println(komunikat);
+        return komunikat;
     }
-    private static void getLiczby(){
+
+    private static void getLiczby() {
         System.out.println("Podaj trzy liczby");
         float liczba;
         for (int i = 0; i < 3; ) {
