@@ -101,6 +101,14 @@
       <workItem from="1571730201976" duration="4215000" />
       <workItem from="1571770375578" duration="6187000" />
     </task>
+    <task id="LOCAL-00001" summary="latest commin - comments to id of clientc UDP SERVER CLASS">
+      <created>1571825260078</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1571825260078</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,7 +130,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="cleared comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleared comments" />
+    <MESSAGE value="latest commin - comments to id of clientc UDP SERVER CLASS" />
+    <option name="LAST_COMMIT_MESSAGE" value="latest commin - comments to id of clientc UDP SERVER CLASS" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Serwer$UDPSerwer.ic" NAME="UDPSerwer Coverage Results" MODIFIED="1571759524716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -83,8 +83,7 @@ import java.util.regex.Pattern;
                         blokada = true zablokuj przydzielanie nowych id
                     }
 
-                    //jeśli pattern zawiera #NUMER SESJI ...
-                    if((Pattern.compile("nie wiem na szybko")).matcher(messageReceived).find(){
+                    if((Pattern.compile(" //jeśli pattern zawiera #NUMER SESJI ...")).matcher(messageReceived).find(){
 
                             messageReceived.trim()? weź od klienta jego ID i używaj do wysyłania kolejnych odpowiedzi
                     }
@@ -106,9 +105,11 @@ import java.util.regex.Pattern;
                     System.out.println("\n Zamykanie połączenia  ");
                     datagramSocket.close();
                     }
+
+
                     else if(Pattern.compile("oper#ERROR@").matcher(messageReceived).find()) {
                       //? co odesłać, jaki komunikat,?
-                        //oper#stat#ERROR@iden#3#23:52@
+                        //oper#stat#ERROR@iden#numer-sesji#23:52@
                     }
 
                 //**********************nie dotykać***************************************************************************************//
