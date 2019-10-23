@@ -79,10 +79,10 @@ import java.util.regex.Pattern;
                         messageSendTo = "oper#id#" + getIdForUser() + "@";
                         sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort);
                         datagramSocket.send(sendToPacket);
-                        blokada = true zablokuj przydzielanie nowych id
+                        //blokada = true zablokuj przydzielanie nowych id
                     }
 
-                    //jeśli pattern zawiera #NUMER SESJI ...
+                    /*//jeśli pattern zawiera #NUMER SESJI ...
                     if((Pattern.compile("nie wiem na szybko")).matcher(messageReceived).find(){
 
                             messageReceived.trim()? weź od klienta jego ID i używaj do wysyłania kolejnych odpowiedzi
@@ -90,7 +90,7 @@ import java.util.regex.Pattern;
                     else{
                         przydziel nowego id
 
-                    }
+                    }*/
 
 
                     else if((Pattern.compile("oper#close@")).matcher(messageReceived).find()) {

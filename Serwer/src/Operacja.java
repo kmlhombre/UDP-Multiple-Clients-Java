@@ -46,22 +46,22 @@ public class Operacja {
 
         if((Pattern.compile("mnozenie")).matcher(Operacja.KOMUNIKAT).find()) {
             result = liczby[0] * liczby[1] * liczby[2];
-            System.out.println(result);
+            //System.out.println(result);
             OPERACJA += "mnozenie@";
         }
         else if((Pattern.compile("dzielenie")).matcher(Operacja.KOMUNIKAT).find()) {
             result = (float) (liczby[0] * 1.0 / liczby[1] / liczby[2]);
-            System.out.println(result);
+            //System.out.println(result);
             OPERACJA += "dzielenie@";
         }
         else if((Pattern.compile("dodawanie")).matcher(Operacja.KOMUNIKAT).find()) {
             result = liczby[0] + liczby[1] + liczby[2];
-            System.out.println(result);
+            //System.out.println(result);
             OPERACJA += "dodawanie@";
         }
         else if((Pattern.compile("odejmowanie")).matcher(Operacja.KOMUNIKAT).find()) {
             result = liczby[0] - liczby[1] - liczby[2];
-            System.out.println(result);
+            //System.out.println(result);
             OPERACJA += "odejmowanie@";
         }
 
@@ -81,7 +81,7 @@ public class Operacja {
         message += OPERACJA + "stat#OK@iden#" + ID + "#" + Czas.getGodzina() + "#";
         message += Float.toString(result) + "@";
 
-        System.out.println(message);
+        //System.out.println(message);
         setDefaultTextOfStatement();
         return message;
     }
