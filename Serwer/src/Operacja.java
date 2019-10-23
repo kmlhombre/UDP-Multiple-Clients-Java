@@ -11,7 +11,7 @@ public class Operacja {
     private static String KOMUNIKAT;
 
 
-    public Operacja(String KOMUNIKAT) {
+    Operacja(String KOMUNIKAT) {
         Operacja.KOMUNIKAT = KOMUNIKAT;
         message = "";
         result = 0;
