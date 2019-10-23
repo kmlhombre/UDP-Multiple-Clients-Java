@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 
         public static void main(String[] args)
         {
+
             for(int i=0; i<16; i++) {
                 ID[i] = false;
             }
@@ -74,7 +75,7 @@ import java.util.regex.Pattern;
                     messageReceived = new String(receivedPacket.getData(),0,receivedPacket.getLength());
 
                     //za każdym razem jak wysyłam wiadomość to pytam się o id
-
+//***********************************obmyśl jak to ładnie ubrac bo taki rozgardiasz się zrobił**************************************************************************//
                     if(messageReceived.equals("oper#id@")) {
                         messageSendTo = "oper#id#" + getIdForUser() + "@";
                         sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort);
@@ -99,12 +100,18 @@ import java.util.regex.Pattern;
                         if(m.find()) {
                             int temp = Integer.parseInt(m.group());
                             setIdEmpty(temp);
+
                         }
+                    //zamykanie polaczenia
+                    System.out.println("\n Zamykanie połączenia  ");
+                    datagramSocket.close();
                     }
                     else if(Pattern.compile("oper#ERROR@").matcher(messageReceived).find()) {
                       //? co odesłać, jaki komunikat,?
                         //oper#stat#ERROR@iden#3#23:52@
                     }
+
+                //**********************nie dotykać***************************************************************************************//
                     else {
                         Operacja operacja = new Operacja(messageReceived);
 
