@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d57ee84e-c36d-4976-bc30-2f70d50428c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UDPSerwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UDPSerwer.java" afterDir="false" />
-    </list>
+    <list default="true" id="d57ee84e-c36d-4976-bc30-2f70d50428c4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571825260078</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="comment">
+      <created>1571825370532</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1571825370532</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,7 +135,8 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="cleared comments" />
     <MESSAGE value="latest commin - comments to id of clientc UDP SERVER CLASS" />
-    <option name="LAST_COMMIT_MESSAGE" value="latest commin - comments to id of clientc UDP SERVER CLASS" />
+    <MESSAGE value="comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="comment" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Serwer$UDPSerwer.ic" NAME="UDPSerwer Coverage Results" MODIFIED="1571759524716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
