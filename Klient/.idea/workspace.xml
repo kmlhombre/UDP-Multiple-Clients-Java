@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="61d7a7ee-b331-40cb-a017-e42e437fd35a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Operacja.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Serwer/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/Operacja.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/src/UDPSerwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/UDPSerwer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +33,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Serwer" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -78,6 +76,7 @@
       <workItem from="1571769631207" duration="13000" />
       <workItem from="1571770383820" duration="4731000" />
       <workItem from="1571844694669" duration="2648000" />
+      <workItem from="1571853433236" duration="333000" />
     </task>
     <servers />
   </component>
