@@ -9,7 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 //do zrobienia nadawanie id klientom, jeśli klient zakończy transmisję id zostaje przydzielone znowu do obiegu
 //wszystkie konfiguracje z komunikatem
-//id nie działa bo się inkrementuje jak wysłane wiadomości
 
     public class UDPSerwer
     {
