@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
             handleClient();
         }
 
-        public static int getIdForUser() {
+        private static int getIdForUser() {
             int tempId = 0;
             for(int i=0; i<16; i++) {
                 if(!ID[i]) {
@@ -45,6 +45,8 @@ import java.util.regex.Pattern;
                     ID[i] = true;
                     counterUsers++;
                     break;
+                    // inna funkcja blockId - jeśli ID{i} = true przydziel następny
+                    //i to counterusers po co jak nigdzie nie używane?
                 }
             }
             return tempId;
@@ -71,11 +73,26 @@ import java.util.regex.Pattern;
 
                     messageReceived = new String(receivedPacket.getData(),0,receivedPacket.getLength());
 
+                    //za każdym razem jak wysyłam wiadomość to pytam się o id
+
                     if(messageReceived.equals("oper#id@")) {
                         messageSendTo = "oper#id#" + getIdForUser() + "@";
                         sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort);
                         datagramSocket.send(sendToPacket);
+                        blokada = true zablokuj przydzielanie nowych id
                     }
+
+                    //jeśli pattern zawiera #NUMER SESJI ...
+                    if((Pattern.compile("nie wiem na szybko")).matcher(messageReceived).find(){
+
+                            messageReceived.trim()? weź od klienta jego ID i używaj do wysyłania kolejnych odpowiedzi
+                    }
+                    else{
+                        przydziel nowego id
+
+                    }
+
+
                     else if((Pattern.compile("oper#close@")).matcher(messageReceived).find()) {
                         Pattern p = Pattern.compile("\\d+");
                         Matcher m = p.matcher(messageReceived);
@@ -84,7 +101,7 @@ import java.util.regex.Pattern;
                             setIdEmpty(temp);
                         }
                     }
-                    else if((Pattern.compile("oper#ERROR@")).matcher(messageReceived).find()) {
+                    else if(Pattern.compile("oper#ERROR@").matcher(messageReceived).find()) {
                       //? co odesłać, jaki komunikat,?
                         //oper#stat#ERROR@iden#3#23:52@
                     }

@@ -11,6 +11,7 @@ public class Operacja {
     private static String OPERACJA = "oper#";
     private static String STATUS = "stat#OK@";
     private static String IDEN = "iden#";
+    private static String ID = "";
     private static String KOMUNIKAT;
 
 
@@ -71,13 +72,13 @@ public class Operacja {
 
         Pattern p = Pattern.compile("\\d+");
         Matcher m = p.matcher(KOMUNIKAT);
-        String id = "";
+
 
         if(m.find()) {
-            id = m.group();
+            ID = m.group();
         }
 
-        message += OPERACJA + "stat#OK@iden#" + id + "#" + Czas.getGodzina() + "#";
+        message += OPERACJA + "stat#OK@iden#" + ID + "#" + Czas.getGodzina() + "#";
         message += Float.toString(result) + "@";
 
         System.out.println(message);
