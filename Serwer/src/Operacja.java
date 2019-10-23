@@ -26,42 +26,42 @@ public class Operacja {
         IDEN= "iden#";
     }
     private void calculateResultAndGetOPERACJAString() {
-        int[] liczby = new int[3];
+        float[] liczby = new float[3];
         int counter = 0;
 
         //regex wykrywajacy 3 liczby w otrzymanym komunikacie od klienta
-        Pattern p = Pattern.compile("\\d+#\\d+#\\d+@");
+        Pattern p = Pattern.compile("\\d+\\.*\\d*#\\d+\\.*\\d*#\\d\\.*\\d*@");
         Matcher m = p.matcher(Operacja.KOMUNIKAT);
 
         if(m.find()) {
             String temp = m.group();
-            p = Pattern.compile("\\d+");
+            p = Pattern.compile("\\d+\\.*\\d*");
             m = p.matcher(temp);
 
             while(m.find()) {
-                liczby[counter] = Integer.parseInt(m.group());
+                liczby[counter] = Float.parseFloat(m.group());
                 counter++;
             }
         }
 
         if((Pattern.compile("mnozenie")).matcher(Operacja.KOMUNIKAT).find()) {
             result = liczby[0] * liczby[1] * liczby[2];
-            System.out.println(result);
+            //System.out.println(result);
             OPERACJA += "mnozenie@";
         }
         else if((Pattern.compile("dzielenie")).matcher(Operacja.KOMUNIKAT).find()) {
             result = (float) (liczby[0] * 1.0 / liczby[1] / liczby[2]);
-            System.out.println(result);
+            //System.out.println(result);
             OPERACJA += "dzielenie@";
         }
         else if((Pattern.compile("dodawanie")).matcher(Operacja.KOMUNIKAT).find()) {
             result = liczby[0] + liczby[1] + liczby[2];
-            System.out.println(result);
+            //System.out.println(result);
             OPERACJA += "dodawanie@";
         }
         else if((Pattern.compile("odejmowanie")).matcher(Operacja.KOMUNIKAT).find()) {
             result = liczby[0] - liczby[1] - liczby[2];
-            System.out.println(result);
+            //System.out.println(result);
             OPERACJA += "odejmowanie@";
         }
 
@@ -81,7 +81,7 @@ public class Operacja {
         message += OPERACJA + "stat#OK@iden#" + ID + "#" + Czas.getGodzina() + "#";
         message += result + "@";
 
-        System.out.println(message);
+        //System.out.println(message);
         setDefaultTextOfStatement();
         return message;
     }

@@ -34,22 +34,24 @@ import java.util.regex.Pattern;
                 int choose = 0;
                 String messageToSend="", serverResponse="";
 
-                //prośba o ID
-                messageToSend = "oper#id@";
-                sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
-                datagramSocket.send(sendToPacket);
-                buffer = new byte[BUFFER_SIZE];
+                if(ID_USER.equals("default")) {
+                    //prośba o ID
+                    messageToSend = "oper#id@";
+                    sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
+                    datagramSocket.send(sendToPacket);
+                    buffer = new byte[BUFFER_SIZE];
 
-                //otrzymanie pakietu z id
-                receivedPacket = new DatagramPacket(buffer, buffer.length);
-                datagramSocket.receive(receivedPacket);
-                serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
+                    //otrzymanie pakietu z id
+                    receivedPacket = new DatagramPacket(buffer, buffer.length);
+                    datagramSocket.receive(receivedPacket);
+                    serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
-                //regex aby otrzymac id
-                Pattern pattern = Pattern.compile("\\d+");
-                Matcher matcher = pattern.matcher(serverResponse);
-                if(matcher.find()) {
-                    ID_USER = matcher.group();
+                    //regex aby otrzymac id
+                    Pattern pattern = Pattern.compile("\\d+");
+                    Matcher matcher = pattern.matcher(serverResponse);
+                    if (matcher.find()) {
+                        ID_USER = matcher.group();
+                    }
                 }
 
                 do {
