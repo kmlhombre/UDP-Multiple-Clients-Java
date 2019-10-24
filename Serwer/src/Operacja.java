@@ -15,11 +15,17 @@ public class Operacja {
         Operacja.KOMUNIKAT = KOMUNIKAT;
         message = "";
         result = 0;
+
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(KOMUNIKAT);
+
+        if (m.find()) {
+            ID = m.group();
+        }
     }
 
     private void setDefaultTextOfStatement() { //zresetowanie pola operacja i iden
         OPERACJA = "oper#";
-        String IDEN = "iden#";
     }
 
     private void calculateResultAndGetOPERACJAString() {
@@ -58,18 +64,17 @@ public class Operacja {
     }
 
     String createMessage() {
-        calculateResultAndGetOPERACJAString();
-
-        Pattern p = Pattern.compile("\\d+");
-        Matcher m = p.matcher(KOMUNIKAT);
-
-
-        if (m.find()) {
-            ID = m.group();
+        if(KOMUNIKAT.equals("oper#id@")) {
+            message = "oper#id#" + UDPSerwer.getIdForUser() + "@iden#" + Czas.getGodzina() + "@";
         }
-        message += OPERACJA + "stat#OK@iden#" + ID + "#" + Czas.getGodzina() + "#";
-        message += result + "@";
-
+        else if(Pattern.compile("oper#ERROR@").matcher(KOMUNIKAT).find()) {
+            message = "oper#ERROR@stat#null@iden#" + ID + "#" + Czas.getGodzina() + "@";
+        }
+        else {
+            calculateResultAndGetOPERACJAString();
+            message += OPERACJA + "stat#OK@iden#" + ID + "#" + Czas.getGodzina() + "#";
+            message += result + "@";
+        }
         setDefaultTextOfStatement();
         return message;
     }

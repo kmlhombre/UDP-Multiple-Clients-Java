@@ -21,8 +21,8 @@ public class UDPKlient {
 
     static void setIPAdress(String adresIP) {
         try { //ustawienie adresu hosta
-            // IPAdress = InetAddress.getLocalHost(); //ustawienie ip hosta
-            IPAdress = InetAddress.getByName(adresIP);//ustawienie ip hosta
+           //IPAdress = InetAddress.getLocalHost(); //ustawienie ip hosta
+           IPAdress = InetAddress.getByName(adresIP);//ustawienie ip hosta
 
         } catch (UnknownHostException uhEx) {
             System.out.println("Podanego ID nie znaleziono");
@@ -42,8 +42,7 @@ public class UDPKlient {
 
             if (ID_USER.equals("default")) {
                 //prośba o ID
-
-                messageToSend = "oper#id@iden#" + Czas.getGodzina() +"@";
+                messageToSend = "oper#id@iden#" + Czas.getGodzina() + "@";
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
 
@@ -92,7 +91,3 @@ public class UDPKlient {
         }
     }
 }
-
-
-
-

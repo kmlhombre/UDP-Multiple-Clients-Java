@@ -31,7 +31,7 @@ public class UDPSerwer {
         handleClient();
     }
 
-    private static int getIdForUser() {
+    public static int getIdForUser() {
         int tempId = 0;
         for (int i = 0; i < 16; i++) {
             if (!ID[i]) {
@@ -44,7 +44,7 @@ public class UDPSerwer {
         return tempId;
     }
 
-    private static void setIdEmpty(int id) {
+    public static void setIdEmpty(int id) {
         ID[id] = false;
         counterUsers--;
     }
@@ -64,44 +64,33 @@ public class UDPSerwer {
 
                 messageReceived = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
-                //za każdym razem jak wysyłam wiadomość to pytam się o id
-
-                if (messageReceived.equals("oper#id@")) {
-                    messageSendTo = "oper#id#" + getIdForUser() + "@";
-                    sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort);
-                    datagramSocket.send(sendToPacket);
-
-                } else if (Pattern.compile("oper#close@").matcher(messageReceived).find()) {
+                if (Pattern.compile("oper#close@").matcher(messageReceived).find()) {
                     Pattern p = Pattern.compile("\\d+");
                     Matcher m = p.matcher(messageReceived);
                     if (m.find()) {
                         int temp = Integer.parseInt(m.group());
                         setIdEmpty(temp);
                     }
-
-                } else if (Pattern.compile("oper#ERROR@").matcher(messageReceived).find()) {
-                    //oper#error@stat#null@iden#3#23:52@
-
-                    System.out.print(clientAddress);
-                    System.out.print(" : ");
-                    System.out.println(messageReceived);
-
-                    Pattern p = Pattern.compile("\\d+");
-                    Matcher m = p.matcher(messageReceived);
-                    if (m.find()) {
-                        int temp_id = Integer.parseInt(m.group());
-                        messageSendTo = "oper#ERROR@stat#OK@iden#" + temp_id + "#" + Czas.getGodzina() + "@";
-                        sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort); //stworzenie pakietu do wysłania
-                        datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta
-                    }
-                } else {
+                }
+                else {
                     Operacja operacja = new Operacja(messageReceived);
 
+                    messageSendTo = operacja.createMessage();
+
+                    Pattern p = Pattern.compile("\\d\\d:\\d\\d");
+                    Matcher m = p.matcher(messageReceived);
+                    if(m.find()) {
+                        System.out.print("[" + m.group() + "] ");
+                    }
+                    System.out.print("[R] ");
                     System.out.print(clientAddress);
                     System.out.print(" : ");
                     System.out.println(messageReceived);
 
-                    messageSendTo = operacja.createMessage();
+                    System.out.print("[" + Czas.getGodzina() + "] ");
+                    System.out.print("[S] ");
+                    System.out.print(clientAddress);
+                    System.out.print(" : ");
                     System.out.println(messageSendTo);
 
                     sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort); //stworzenie pakietu do wysłania

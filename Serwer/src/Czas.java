@@ -5,6 +5,22 @@ public class Czas {
     }
     public static String getGodzina(){
         Calendar now = Calendar.getInstance();
-        return (now.get(Calendar.HOUR_OF_DAY) + ":" + now.get(Calendar.MINUTE));
+        String time ="";
+        int h = now.get(Calendar.HOUR_OF_DAY);
+        int m = now.get(Calendar.MINUTE);
+        if(h < 10) {
+            time += "0" + h;
+        }
+        else {
+            time += h;
+        }
+        time += ":";
+        if(m < 10) {
+            time += "0" + m;
+        }
+        else {
+            time += m;
+        }
+        return time;
     }
 }
