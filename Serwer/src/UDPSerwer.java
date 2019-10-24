@@ -14,7 +14,6 @@ public class UDPSerwer {
     private static int BUFFER_SIZE = 128;
 
     private static Boolean[] ID = new Boolean[16];
-    private static int counterUsers = 0;
 
     public static void main(String[] args) {
         for (int i = 0; i < 16; i++) {
@@ -37,7 +36,6 @@ public class UDPSerwer {
             if (!ID[i]) {
                 tempId = i;
                 ID[i] = true;
-                counterUsers++;
                 break;
             }
         }
@@ -46,7 +44,6 @@ public class UDPSerwer {
 
     public static void setIdEmpty(int id) {
         ID[id] = false;
-        counterUsers--;
     }
 
     private static void handleClient() {
