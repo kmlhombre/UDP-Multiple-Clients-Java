@@ -10,7 +10,9 @@ import java.util.regex.Pattern;
 
 public class UDPKlient {
 
+    //private static InetAddress IPAdress;
     private static InetAddress IPAdress;
+
     private static final int PORT = 8001;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket sendToPacket;
@@ -21,7 +23,9 @@ public class UDPKlient {
 
     public static void main(String[] args) {
         try { //ustawienie adresu hosta
-            IPAdress = InetAddress.getLocalHost(); //ustawienie ip hosta
+           // IPAdress = InetAddress.getLocalHost(); //ustawienie ip hosta
+            IPAdress = InetAddress.getByName("192.168.0.1");//ustawienie ip hosta
+
         } catch (UnknownHostException uhEx) {
             System.out.println("ID HOSTA nie znaleziono");
             System.exit(1);
