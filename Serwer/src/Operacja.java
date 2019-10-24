@@ -64,7 +64,7 @@ public class Operacja {
     }
 
     String createMessage() {
-        if(KOMUNIKAT.equals("oper#id@")) {
+        if(Pattern.compile("oper#id@").matcher(KOMUNIKAT).find()) {
             message = "oper#id#" + UDPSerwer.getIdForUser() + "@iden#" + Czas.getGodzina() + "@";
         }
         else if(Pattern.compile("oper#ERROR@").matcher(KOMUNIKAT).find()) {

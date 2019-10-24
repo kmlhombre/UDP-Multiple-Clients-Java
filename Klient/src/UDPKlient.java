@@ -88,7 +88,7 @@ public class UDPKlient {
                     sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
 
                 } else {
-                    messageToSend = operacja.getKomunikat() + "iden#" + ID_USER + "@";
+                    messageToSend = operacja.getKomunikat() + "iden#" + ID_USER + "#" + Czas.getGodzina() + "@";
                     sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
                 }
                 datagramSocket.send(sendToPacket);// wyślij pakiet do serwera

@@ -7,7 +7,6 @@
       <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Czas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/UDPKlient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/UDPKlient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Klient/src/Czas.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/src/Czas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Klient/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/src/Operacja.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Klient/src/UDPKlient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/src/UDPKlient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -15,6 +14,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/Serwer/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/Czas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Serwer/UDPSerwer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/UDPSerwer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Operacja.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -114,6 +114,7 @@
       <workItem from="1571843156702" duration="3449000" />
       <workItem from="1571853497163" duration="273000" />
       <workItem from="1571928011961" duration="1242000" />
+      <workItem from="1571930007113" duration="599000" />
     </task>
     <task id="LOCAL-00001" summary="latest commin - comments to id of clientc UDP SERVER CLASS">
       <created>1571825260078</created>
