@@ -18,7 +18,6 @@ public class UDPKlient {
     private static int BUFFER_SIZE = 128;
     //id
     private static String ID_USER = "default";
-    private static String FINAL_MESSAGE="";
 
     public static void main(String[] args) {
         try { //ustawienie adresu hosta
@@ -73,14 +72,7 @@ public class UDPKlient {
                     datagramSocket.receive(receivedPacket);
                     serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
-
-
-
-                    //regex do wyszukania wyniku, następnie wysłać wynik
                     System.out.println("Odpowiedź serwera: " + serverResponse);
-
-
-
                 } else {
 
                     messageToSend = "oper#CLOSE@iden#" + ID_USER + "@";
@@ -92,9 +84,6 @@ public class UDPKlient {
                     datagramSocket.receive(receivedPacket);
                     serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
-
-
-                    //regex do wyszukania wyniku, następnie wysłać wynik
                     System.out.println("Odpowiedź serwera: " + serverResponse);
                 }
 
