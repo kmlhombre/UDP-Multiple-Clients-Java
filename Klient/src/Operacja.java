@@ -101,7 +101,6 @@ public class Operacja {
         }
 
         setDefaultTextOfStatement();
-        System.out.println(komunikat);
         return komunikat;
     }
 
@@ -126,7 +125,7 @@ public class Operacja {
                         IDEN += (i != 2) ? "#" : "@";
                         i++;
                     } else {
-                        System.out.println("To nie może być zero! Wpisz jesczcze raz"); //2 i 3 liczba nie mogą być zerami
+                        System.out.println("To nie może być zero! Wpisz jeszcze raz"); //2 i 3 liczba nie mogą być zerami
                     }
                 }
             }

@@ -30,7 +30,25 @@ public class UDPKlient {
         }
         accessServer();
     }
+    private static void showFinalMessage(String serverResponse){
+        String finalMessage="";
 
+        Pattern p = Pattern.compile("\\d\\d:\\d\\d");
+        Matcher m = p.matcher(serverResponse);
+        if(m.find()){
+            finalMessage+="[" + m.group() + "] ";
+        }
+        finalMessage+="Wynik: ";
+
+        p = Pattern.compile("\\d+\\.\\d+");
+        m = p.matcher(serverResponse);
+        if(m.find()){
+            finalMessage+=m.group();
+        }
+
+        System.out.println(finalMessage);
+
+    }
     static void accessServer() {
         try {
             datagramSocket = new DatagramSocket();
@@ -78,7 +96,9 @@ public class UDPKlient {
                 datagramSocket.receive(receivedPacket);
                 serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
-                System.out.println("Odpowiedź serwera: " + serverResponse);
+                showFinalMessage(serverResponse);
+
+                //System.out.println("Odpowiedź serwera: " + serverResponse);
 
             } while (choose != 0); //jeżeli klient wpisze close zamknięcie gniazda
 
