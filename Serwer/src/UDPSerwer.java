@@ -64,8 +64,18 @@ public class UDPSerwer {
                 if (Pattern.compile("oper#close@").matcher(messageReceived).find()) {
                     Pattern p = Pattern.compile("\\d+");
                     Matcher m = p.matcher(messageReceived);
+                    int temp = Integer.parseInt(m.group());
                     if (m.find()) {
-                        int temp = Integer.parseInt(m.group());
+                        p = Pattern.compile("\\d\\d:\\d\\d");
+                        m = p.matcher(messageReceived);
+                        if(m.find()) {
+                            System.out.print("[" + m.group() + "] ");
+                        }
+                        System.out.print("[R] ");
+                        System.out.print(clientAddress);
+                        System.out.print(" : ");
+                        System.out.println(messageReceived);
+
                         setIdEmpty(temp);
                     }
                 }
