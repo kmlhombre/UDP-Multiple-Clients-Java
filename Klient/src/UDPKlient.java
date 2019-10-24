@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -18,35 +17,35 @@ public class UDPKlient {
     private static DatagramPacket sendToPacket;
     private static byte[] buffer;
     private static int BUFFER_SIZE = 128;
-    //id
     private static String ID_USER = "default";
 
-    public static void main(String[] args) {
+    static void setIPAdress(String adresIP) {
         try { //ustawienie adresu hosta
-           // IPAdress = InetAddress.getLocalHost(); //ustawienie ip hosta
-            IPAdress = InetAddress.getByName("192.168.0.1");//ustawienie ip hosta
+            // IPAdress = InetAddress.getLocalHost(); //ustawienie ip hosta
+            IPAdress = InetAddress.getByName(adresIP);//ustawienie ip hosta
 
         } catch (UnknownHostException uhEx) {
-            System.out.println("ID HOSTA nie znaleziono");
+            System.out.println("Podanego ID nie znaleziono");
             System.exit(1);
         }
         accessServer();
     }
 
-    private static void accessServer() {
+    static void accessServer() {
         try {
             datagramSocket = new DatagramSocket();
-            //  Scanner userEntry = new Scanner(System.in);
+            buffer = new byte[BUFFER_SIZE];
             int choose = 0;
             String messageToSend = "", serverResponse = "";
-
             DatagramPacket receivedPacket;
+
+
             if (ID_USER.equals("default")) {
                 //prośba o ID
-                messageToSend = "oper#id@";
+
+                messageToSend = "oper#id@iden#" + Czas.getGodzina() +"@";
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
-                buffer = new byte[BUFFER_SIZE];
 
                 //otrzymanie pakietu z id
                 receivedPacket = new DatagramPacket(buffer, buffer.length);
@@ -62,36 +61,25 @@ public class UDPKlient {
             }
 
             do {
+
                 Operacja operacja = new Operacja(ID_USER);
                 operacja.pokazMenu();
                 choose = operacja.getWybor(); //wybranie opcji z menu
-                messageToSend = operacja.getKomunikat(); //pobranie komunikatu od klienta
-                System.out.println(choose);
-
 
                 if (choose != 0) {
+                    messageToSend = operacja.getKomunikat(); //pobranie komunikatu od klienta
                     sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
-                    datagramSocket.send(sendToPacket);// wyślij pakiet do serwera
-                    buffer = new byte[BUFFER_SIZE];
 
-                    receivedPacket = new DatagramPacket(buffer, buffer.length); //odpowiedź od serwera
-                    datagramSocket.receive(receivedPacket);
-                    serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
-
-                    System.out.println("Odpowiedź serwera: " + serverResponse);
                 } else {
-
-                    messageToSend = "oper#CLOSE@iden#" + ID_USER + "@";
+                    messageToSend = operacja.getKomunikat() + "iden#" + ID_USER + "@";
                     sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
-                    datagramSocket.send(sendToPacket);// wyślij pakiet do serwera
-                    buffer = new byte[BUFFER_SIZE];
-
-                    receivedPacket = new DatagramPacket(buffer, buffer.length); //odpowiedź od serwera
-                    datagramSocket.receive(receivedPacket);
-                    serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
-
-                    System.out.println("Odpowiedź serwera: " + serverResponse);
                 }
+                datagramSocket.send(sendToPacket);// wyślij pakiet do serwera
+                receivedPacket = new DatagramPacket(buffer, buffer.length); //odpowiedź od serwera
+                datagramSocket.receive(receivedPacket);
+                serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
+
+                System.out.println("Odpowiedź serwera: " + serverResponse);
 
             } while (choose != 0); //jeżeli klient wpisze close zamknięcie gniazda
 
