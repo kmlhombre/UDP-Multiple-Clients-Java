@@ -38,7 +38,7 @@ public class Operacja {
 
         if (m.find()) {
             String temp = m.group();
-            p = Pattern.compile("\\d+\\.*\\d*");
+            p = Pattern.compile("-*\\d+\\.*\\d+");
             m = p.matcher(temp);
 
             while (m.find()) {
@@ -66,6 +66,9 @@ public class Operacja {
     String createMessage() {
         if(Pattern.compile("oper#id@").matcher(KOMUNIKAT).find()) {
             message = "oper#id#" + UDPSerwer.getIdForUser() + "@iden#" + Czas.getGodzina() + "@";
+        }
+        else if(Pattern.compile("oper#CLOSE@").matcher(KOMUNIKAT).find()) {
+            message = "oper#close#ok@";
         }
         else if(Pattern.compile("oper#ERROR@").matcher(KOMUNIKAT).find()) {
             message = "oper#ERROR@stat#null@iden#" + ID + "#" + Czas.getGodzina() + "@";

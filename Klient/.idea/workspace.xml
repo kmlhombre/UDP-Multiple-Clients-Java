@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61d7a7ee-b331-40cb-a017-e42e437fd35a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/Czas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/UDPKlient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/UDPKlient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainKlientClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainKlientClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UDPKlient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UDPKlient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Serwer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Czas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/UDPSerwer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/UDPSerwer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/Operacja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Serwer/src/UDPSerwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/UDPSerwer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +39,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Serwer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -89,6 +86,7 @@
       <workItem from="1571926136728" duration="284000" />
       <workItem from="1571926839800" duration="678000" />
       <workItem from="1571930031887" duration="569000" />
+      <workItem from="1571930817970" duration="2006000" />
     </task>
     <servers />
   </component>
@@ -107,5 +105,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Operacja.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

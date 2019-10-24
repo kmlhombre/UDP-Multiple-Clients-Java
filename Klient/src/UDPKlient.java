@@ -40,7 +40,7 @@ public class UDPKlient {
         }
         finalMessage+="Wynik: ";
 
-        p = Pattern.compile("\\d+\\.\\d+");
+        p = Pattern.compile("-*\\d+\\.\\d+");
         m = p.matcher(serverResponse);
         if(m.find()){
             finalMessage+=m.group();
@@ -96,8 +96,9 @@ public class UDPKlient {
                 datagramSocket.receive(receivedPacket);
                 serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
-                showFinalMessage(serverResponse);
-
+                if(choose !=0 ) {
+                    showFinalMessage(serverResponse);
+                }
                 //System.out.println("Odpowiedź serwera: " + serverResponse);
 
             } while (choose != 0); //jeżeli klient wpisze close zamknięcie gniazda
