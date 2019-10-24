@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Operacja {
-    private static int wybor;
+    private int wybor;
     private static String komunikat;
     private static Scanner userEntry;
     private static boolean dzielenie;
@@ -20,11 +20,6 @@ public class Operacja {
         id = ID;
     }
 
-    private void setDefaults() {
-        OPERACJA = "oper#";
-        IDEN = "iden#";
-    }
-
     private static void setDefaultTextOfStatement() { //zresetowanie pola operacja i iden
         OPERACJA = "oper#";
         IDEN = "iden#";
@@ -39,18 +34,19 @@ public class Operacja {
         System.out.println("2. Odejmowanie");
         System.out.println("3. Mnozenie ");
         System.out.println("4. Dzielenie ");
-        System.out.println("-----------------");
 
+        System.out.println("-----------------");
+        userEntry = new Scanner(System.in);
+        wybor = userEntry.nextInt();
     }
 
-    int getWybor() { //zwraca numer wybranego działania wybrany przez użytkownika
+    public int getWybor() { //zwraca numer wybranego działania wybrany przez użytkownika
         return wybor;
     }
 
-    public String getKomunikat(int wybor) { //tworzenie komunikatu do wysłania
+    public String getKomunikat() { //tworzenie komunikatu do wysłania
         boolean errorFlag = false;
-        userEntry = new Scanner(System.in);
-        wybor = userEntry.nextInt();
+
         IDEN += id + "#" + Czas.getGodzina() + "#"; //doklejenie do pola iden godziny
 
         switch (wybor) {

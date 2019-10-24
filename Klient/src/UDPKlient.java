@@ -61,7 +61,9 @@ public class UDPKlient {
                 Operacja operacja = new Operacja(ID_USER);
                 operacja.pokazMenu();
                 choose = operacja.getWybor(); //wybranie opcji z menu
-                messageToSend = operacja.getKomunikat(choose); //pobranie komunikatu od klienta
+                messageToSend = operacja.getKomunikat(); //pobranie komunikatu od klienta
+                System.out.println(choose);
+
 
                 if (choose != 0) {
                     sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
