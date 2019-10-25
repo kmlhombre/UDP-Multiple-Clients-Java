@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61d7a7ee-b331-40cb-a017-e42e437fd35a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/MainKlientClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/MainKlientClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainKlientClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainKlientClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Operacja.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Serwer/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/Operacja.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +37,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -85,6 +88,7 @@
       <workItem from="1571930031887" duration="569000" />
       <workItem from="1571930817970" duration="2006000" />
       <workItem from="1572022844143" duration="677000" />
+      <workItem from="1572027287850" duration="948000" />
     </task>
     <servers />
   </component>
