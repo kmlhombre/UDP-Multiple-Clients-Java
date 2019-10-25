@@ -36,6 +36,7 @@ public class Operacja {
         System.out.println("4. Dzielenie ");
 
         System.out.println("-----------------");
+        System.out.println("Czy zakończyć działanie? Jeśli tak, wpisz 0");
         userEntry = new Scanner(System.in);
         wybor = userEntry.nextInt();
     }

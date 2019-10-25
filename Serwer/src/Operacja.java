@@ -33,7 +33,7 @@ public class Operacja {
         int counter = 0;
 
         //regex wykrywajacy 3 liczby w otrzymanym komunikacie od klienta
-        Pattern p = Pattern.compile("\\d+\\.*\\d*#\\d+\\.*\\d*#\\d\\.*\\d*@");
+        Pattern p = Pattern.compile("(\\d+\\.\\d+#){2}\\d+\\.\\d+@");
         Matcher m = p.matcher(Operacja.KOMUNIKAT);
 
         if (m.find()) {
@@ -43,6 +43,7 @@ public class Operacja {
 
             while (m.find()) {
                 liczby[counter] = Float.parseFloat(m.group());
+                System.out.println(liczby[counter]);
                 counter++;
             }
         }
