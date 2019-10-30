@@ -4,32 +4,42 @@ import java.util.regex.Pattern;
 public class Operacja {
 
     private String message;
-    private float result;
+    private String id_klient;
 
-    private static String OPERACJA = "oper#";
-    private static String ID = "";
+    private static String OPER = "oper#";
+    private static String STAT = "stat#";
+    private static String IDEN = "iden#";
+    private static String RESU = "resu#";
+    private static String TIME = "time#";
+
+    private static int NUMS_V[] = new int[3];
+    private static int RESU_V;
+    private static long TIME_V;
     private static String KOMUNIKAT;
 
 
     public Operacja(String KOMUNIKAT) {
         Operacja.KOMUNIKAT = KOMUNIKAT;
         message = "";
-        result = 0;
+        RESU_V = 0;
 
         Pattern p = Pattern.compile("\\d+");
         Matcher m = p.matcher(KOMUNIKAT);
 
         if (m.find()) {
-            ID = m.group();
+            id_klient = m.group();
         }
     }
 
     private void setDefaultTextOfStatement() { //zresetowanie pola operacja i iden
-        OPERACJA = "oper#";
+        OPER = "oper#";
+        STAT = "stat#";
+        IDEN = "iden#";
+        RESU = "resu#";
+        TIME = "time#";
     }
 
     private void calculateResultAndGetOPERACJAString() {
-        float[] liczby = new float[3];
         int counter = 0;
 
         //regex wykrywajacy 3 liczby w otrzymanym komunikacie od klienta
@@ -42,42 +52,54 @@ public class Operacja {
             m = p.matcher(temp);
 
             while (m.find()) {
-                liczby[counter] = Float.parseFloat(m.group());
-                System.out.println(liczby[counter]);
+                NUMS_V[counter] = Integer.parseInt(m.group());
                 counter++;
             }
         }
 
         if (Pattern.compile("mnozenie").matcher(Operacja.KOMUNIKAT).find()) {
-            result = liczby[0] * liczby[1] * liczby[2];
-            OPERACJA += "mnozenie@";
+            RESU_V = NUMS_V[0] * NUMS_V[1] * NUMS_V[2];
+            OPER += "mnozenie@";
         } else if (Pattern.compile("dzielenie").matcher(Operacja.KOMUNIKAT).find()) {
-            result = (float) (liczby[0] * 1.0 / liczby[1] / liczby[2]);
-            OPERACJA += "dzielenie@";
+            RESU_V = NUMS_V[0] / NUMS_V[1] / NUMS_V[2];
+            OPER += "dzielenie@";
         } else if (Pattern.compile("dodawanie").matcher(Operacja.KOMUNIKAT).find()) {
-            result = liczby[0] + liczby[1] + liczby[2];
-            OPERACJA += "dodawanie@";
+            RESU_V = NUMS_V[0] + NUMS_V[1] + NUMS_V[2];
+            OPER += "dodawanie@";
         } else if (Pattern.compile("odejmowanie").matcher(Operacja.KOMUNIKAT).find()) {
-            result = liczby[0] - liczby[1] - liczby[2];
-            OPERACJA += "odejmowanie@";
+            RESU_V = NUMS_V[0] - NUMS_V[1] - NUMS_V[2];
+            OPER += "odejmowanie@";
+        } else if (Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
+            OPER += "setid@";
+        } else if (Pattern.compile("CLOSE").matcher(Operacja.KOMUNIKAT).find()) {
+            OPER += "releaseid@";
+        } else if (Pattern.compile("ERROR").matcher(Operacja.KOMUNIKAT).find()) {
+            OPER += "agree@";
         }
-
+        RESU += RESU_V + "@";
     }
 
     String createMessage() {
-        if(Pattern.compile("oper#id@").matcher(KOMUNIKAT).find()) {
-            message = "oper#id#" + UDPSerwer.getIdForUser() + "@iden#" + Czas.getGodzina() + "@";
+        if(OPER.equals("oper#setid@")) {
+            STAT += "ok@";
+            IDEN += UDPSerwer.getIdForUser() + "@";
+            message = OPER + STAT + IDEN;
         }
-        else if(Pattern.compile("oper#CLOSE@").matcher(KOMUNIKAT).find()) {
-            message = "oper#close#ok@";
+        else if(OPER.equals("oper#releaseid@")) {
+            STAT += "ok@";
+            IDEN += "null@";
+            message = OPER + STAT + IDEN;
         }
-        else if(Pattern.compile("oper#ERROR@").matcher(KOMUNIKAT).find()) {
-            message = "oper#ERROR@stat#null@iden#" + ID + "#" + Czas.getGodzina() + "@";
+        else if(OPER.equals("oper#agree@")) {
+            STAT += "ok@";
+            IDEN += id_klient + "@";
+            message = OPER + STAT + IDEN;
         }
         else {
             calculateResultAndGetOPERACJAString();
-            message += OPERACJA + "stat#OK@iden#" + ID + "#" + Czas.getGodzina() + "#";
-            message += result + "@";
+            STAT += "ok@";
+            IDEN += id_klient + "@";
+            message = OPER + STAT + IDEN + RESU;
         }
         setDefaultTextOfStatement();
         return message;
