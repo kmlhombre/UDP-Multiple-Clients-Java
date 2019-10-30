@@ -64,32 +64,26 @@ public class UDPSerwer {
                 Operacja operacja = new Operacja(messageReceived);
                 messageSendTo = operacja.createMessage();
 
-                Pattern p = Pattern.compile("\\d\\d:\\d\\d");
-                Matcher m = p.matcher(messageReceived);
-                if(m.find()) {
-                    System.out.print("[" + m.group() + "] ");
-                }
                 System.out.print("[R] ");
                 System.out.print(clientAddress);
                 System.out.print(" : ");
                 System.out.println(messageReceived);
 
+                System.out.print("[S] ");
+                System.out.print(clientAddress);
+                System.out.print(" : ");
+                System.out.println(messageSendTo);
+
                 if (Pattern.compile("oper#CLOSE@").matcher(messageReceived).find()) {
                     int temp;
-                    p = Pattern.compile("\\d+");
-                    m = p.matcher(messageReceived);
+                    Pattern p = Pattern.compile("\\d+");
+                    Matcher m = p.matcher(messageReceived);
                     if(m.find()) {
                         temp = Integer.parseInt(m.group());
                         setIdEmpty(temp);
                     }
                 }
-                else {
-                    System.out.print("[" + Czas.getGodzina() + "] ");
-                    System.out.print("[S] ");
-                    System.out.print(clientAddress);
-                    System.out.print(" : ");
-                    System.out.println(messageSendTo);
-                }
+
                 sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort); //stworzenie pakietu do wysłania
                 datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta
             } while (true);
