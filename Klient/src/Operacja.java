@@ -9,20 +9,29 @@ public class Operacja {
     //id
     private static String id;
 
-    private static String OPERACJA = "oper#";
-    private static String STATUS = "stat#NULL@";
+    private static String OPER = "oper#";
+    private static String STAT = "stat#NULL@";
     private static String IDEN = "iden#";
+    private static String TIME="time#";
+    private static String[] NUMS =new String[3];
+    private static int[] tablicaLiczby =new int[3];
 
     public Operacja(String ID) {
         dzielenie = false;
         closed = false;
         komunikat = "";
         id = ID;
+        NUMS[0]="num1#";
+        NUMS[1]="num2#";
+        NUMS[2]="num3#";
     }
 
     private static void setDefaultTextOfStatement() { //zresetowanie pola operacja i iden
-        OPERACJA = "oper#";
+        OPER = "oper#";
         IDEN = "iden#";
+        NUMS[0]="num1#";
+        NUMS[1]="num2#";
+        NUMS[2]="num3#";
 
     }
 
@@ -48,7 +57,7 @@ public class Operacja {
     public String getKomunikat() { //tworzenie komunikatu do wysłania
         boolean errorFlag = false;
 
-        IDEN += id + "#" + Czas.getGodzina() + "#"; //doklejenie do pola iden godziny
+        IDEN += id + "@"; //doklejenie do pola iden ID klienta
 
         switch (wybor) {
             case 0: {
@@ -59,28 +68,28 @@ public class Operacja {
             case 1: {
                 //dodawanie
                 errorFlag = false;
-                OPERACJA += "dodawanie@";
+                OPER += "dodawanie@";
                 getLiczby();
                 break;
             }
             case 2: {
                 //odejmowanie
                 errorFlag = false;
-                OPERACJA += "odejmowanie@";
+                OPER += "odejmowanie@";
                 getLiczby();
                 break;
             }
             case 3: {
                 //mnożenie
                 errorFlag = false;
-                OPERACJA += "mnozenie@";
+                OPER += "mnozenie@";
                 getLiczby();
                 break;
             }
             case 4: {
                 //dzielenie
                 errorFlag = false;
-                OPERACJA += "dzielenie@";
+                OPER += "dzielenie@";
                 dzielenie = true;
                 getLiczby();
                 break;
@@ -92,13 +101,13 @@ public class Operacja {
 
         if (errorFlag) {
             if (closed) {
-                komunikat = OPERACJA + "CLOSE@";
+                komunikat = OPER+ "close@" + STAT +IDEN+ "@" + TIME+ Czas.getGodzina()+"@"; //dorobić
             } else {
-                komunikat = OPERACJA + "ERROR@" + STATUS + "null@" + IDEN;
+                komunikat = OPER + "error@" + STAT + IDEN +"@" +TIME +Czas.getGodzina()+"@";
             }
 
         } else {
-            komunikat = OPERACJA + STATUS + IDEN;
+            komunikat = OPER + STAT + IDEN +NUMS[0] + NUMS[1]+NUMS[2]+ TIME +Czas.getGodzina()+"@";
         }
 
         setDefaultTextOfStatement();
@@ -107,23 +116,20 @@ public class Operacja {
 
     private static void getLiczby() {
         System.out.println("Podaj trzy liczby");
-        float liczba;
+
         for (int i = 0; i < 3; ) {
-            liczba = userEntry.nextFloat();    //wprowadzanie liczby do zmiennej tymczasowej
+            tablicaLiczby[i] = userEntry.nextInt();    //wprowadzanie liczby do zmiennej tymczasowej
 
             //warunek sprawdzajacy czy dana operacja jest dzieleniem lub, w przypadku dzielenia, sprawdza czy aktualnie ustawiana jest pierwsza liczba (w przypadku dzielenia moze byc to 0)
-            if (i == 0 || !dzielenie) {
-                //wpisanie liczby do operacji iden
-                IDEN += Float.toString(liczba);
-                IDEN += (i != 2) ? "#" : "@";
+            if (tablicaLiczby[i] == 0 || !dzielenie) {
+                //wpisanie liczby do
+                NUMS[i] += Integer.toString(tablicaLiczby[i])+"@";
                 i++;
             } else {
-
                 if (dzielenie) { //wykrycie czy dana operacja jest dzieleniem
                     //wykrycie czy zostalo wpisane 0 dla drugiej lub trzeciej liczby, jesli nie, liczba zostanie dopisana, jesli tak, krok dopisania zostanie pominiety
-                    if (liczba != 0) {
-                        IDEN += Float.toString(liczba);
-                        IDEN += (i != 2) ? "#" : "@";
+                    if (tablicaLiczby[0] != 0) {
+                        NUMS[i] += Integer.toString(tablicaLiczby[i])+"@";
                         i++;
                     } else {
                         System.out.println("To nie może być zero! Wpisz jeszcze raz"); //2 i 3 liczba nie mogą być zerami

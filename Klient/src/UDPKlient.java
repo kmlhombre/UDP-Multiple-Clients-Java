@@ -18,6 +18,9 @@ public class UDPKlient {
     private static byte[] buffer;
     private static int BUFFER_SIZE = 128;
     private static String ID_USER = "default";
+    private static String IDEN = "iden#";
+    private static String OPER="oper#";
+    private static String TIME="time#";
 
     static void setIPAdress(String adresIP) {
         try { //ustawienie adresu hosta
@@ -60,7 +63,7 @@ public class UDPKlient {
 
             if (ID_USER.equals("default")) {
                 //prośba o ID
-                messageToSend = "oper#id@iden#" + Czas.getGodzina() + "@";
+                messageToSend = OPER + "getid@" + IDEN + "NULL" + Czas.getGodzina() + "@";
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
 
@@ -84,13 +87,13 @@ public class UDPKlient {
                 choose = operacja.getWybor(); //wybranie opcji z menu
 
                 if (choose != 0) {
-                    messageToSend = operacja.getKomunikat(); //pobranie komunikatu od klienta
+                    messageToSend = operacja.getKomunikat() + IDEN + ID_USER + "#" + TIME+ Czas.getGodzina() + "@";
                     sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
 
-                } else {
-                    messageToSend = operacja.getKomunikat() + "iden#" + ID_USER + "#" + Czas.getGodzina() + "@";
-                    sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
-                }
+                } //else {
+                    //messageToSend = operacja.getKomunikat() + IDEN + ID_USER + "#" + TIME+ Czas.getGodzina() + "@";
+                  //  sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
+                //}
                 datagramSocket.send(sendToPacket);// wyślij pakiet do serwera
                 receivedPacket = new DatagramPacket(buffer, buffer.length); //odpowiedź od serwera
                 datagramSocket.receive(receivedPacket);
@@ -99,16 +102,16 @@ public class UDPKlient {
                 if(choose !=0 ) {
                     showFinalMessage(serverResponse);
                 }
-                //System.out.println("Odpowiedź serwera: " + serverResponse);
+                System.out.println("Odpowiedź serwera: " + serverResponse);
 
             } while (choose != 0); //jeżeli klient wpisze close zamknięcie gniazda
 
         } catch (IOException ioEx) {
             ioEx.printStackTrace();
         } finally {
-
             System.out.println("Rozłączanie klienta... ");
             datagramSocket.close();
+
         }
     }
 }
