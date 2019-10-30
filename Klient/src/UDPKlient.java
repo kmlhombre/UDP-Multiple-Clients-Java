@@ -12,7 +12,7 @@ public class UDPKlient {
     //private static InetAddress IPAdress;
     private static InetAddress IPAdress;
 
-    private static final int PORT = 8001;
+    private static final int PORT = 8005;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket sendToPacket;
     private static byte[] buffer;
@@ -23,9 +23,10 @@ public class UDPKlient {
     private static String TIME="time#";
 
     static void setIPAdress(String adresIP) {
+
         try { //ustawienie adresu hosta
            //IPAdress = InetAddress.getLocalHost(); //ustawienie ip hosta
-           IPAdress = InetAddress.getByName(adresIP);//ustawienie ip hosta
+         IPAdress = InetAddress.getByName(adresIP);//ustawienie ip hosta
 
         } catch (UnknownHostException uhEx) {
             System.out.println("Podanego ID nie znaleziono");
@@ -53,6 +54,7 @@ public class UDPKlient {
 
     }
     static void accessServer() {
+
         try {
             datagramSocket = new DatagramSocket();
             buffer = new byte[BUFFER_SIZE];
@@ -60,18 +62,22 @@ public class UDPKlient {
             String messageToSend = "", serverResponse = "";
             DatagramPacket receivedPacket;
 
-
             if (ID_USER.equals("default")) {
                 //prośba o ID
-                messageToSend = OPER + "getid@" + IDEN + "NULL" + Czas.getGodzina() + "@";
+
+                messageToSend = OPER + "getid@" + IDEN + "null#" +TIME+ Czas.getGodzina() + "@";
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
+
+                System.out.println(messageToSend);
+                /* Klient nie otrzymuje wiadomości z ID od serwera */
 
                 //otrzymanie pakietu z id
                 receivedPacket = new DatagramPacket(buffer, buffer.length);
                 datagramSocket.receive(receivedPacket);
                 serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
+                System.out.println((serverResponse));
                 //regex aby otrzymac id
                 Pattern pattern = Pattern.compile("\\d+");
                 Matcher matcher = pattern.matcher(serverResponse);
@@ -79,6 +85,7 @@ public class UDPKlient {
                     ID_USER = matcher.group();
                 }
             }
+
 
             do {
 

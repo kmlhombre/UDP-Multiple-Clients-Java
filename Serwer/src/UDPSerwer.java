@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UDPSerwer {
-    private static final int PORT = 8001;
+    private static final int PORT = 8005;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket receivedPacket, sendToPacket;
     private static byte[] buffer;
@@ -48,6 +48,7 @@ public class UDPSerwer {
 
     private static void handleClient() {
         try {
+
             String messageReceived, messageSendTo;
             InetAddress clientAddress = null; //ustawienie ip klienta
             int clientPort;
@@ -55,14 +56,22 @@ public class UDPSerwer {
             do {
                 buffer = new byte[BUFFER_SIZE];
                 receivedPacket = new DatagramPacket(buffer, buffer.length);
+
+
+                /*tego serwer nie dostaje*/
                 datagramSocket.receive(receivedPacket); //odebranie wiadomości od klienta
+                /* ---------------------*/
+
                 clientAddress = receivedPacket.getAddress(); //adres klienta
                 clientPort = receivedPacket.getPort(); //port klienta
-
+                System.out.println(clientPort);
                 messageReceived = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
+
+
 
                 Operacja operacja = new Operacja(messageReceived);
                 messageSendTo = operacja.createMessage();
+                System.out.println(messageSendTo);
 
                 System.out.print("[R] ");
                 System.out.print(clientAddress);
@@ -74,7 +83,7 @@ public class UDPSerwer {
                 System.out.print(" : ");
                 System.out.println(messageSendTo);
 
-                if (Pattern.compile("oper#CLOSE@").matcher(messageReceived).find()) {
+                if (Pattern.compile("oper#close@").matcher(messageReceived).find()) {
                     int temp;
                     Pattern p = Pattern.compile("\\d+");
                     Matcher m = p.matcher(messageReceived);
@@ -87,6 +96,7 @@ public class UDPSerwer {
                 sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort); //stworzenie pakietu do wysłania
                 datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta
             } while (true);
+
         } catch (IOException ioEx) {
             ioEx.printStackTrace();
         } finally {

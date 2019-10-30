@@ -101,7 +101,7 @@ public class Operacja {
 
         if (errorFlag) {
             if (closed) {
-                komunikat = OPER+ "close@" + STAT +IDEN+ "@" + TIME+ Czas.getGodzina()+"@"; //dorobić
+                komunikat = OPER+ "close@" + STAT +IDEN+ "@" + TIME+ Czas.getGodzina()+"@";
             } else {
                 komunikat = OPER + "error@" + STAT + IDEN +"@" +TIME +Czas.getGodzina()+"@";
             }

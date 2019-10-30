@@ -35,7 +35,7 @@ public class Operacja {
         OPER = "oper#";
         STAT = "stat#";
         IDEN = "iden#";
-        RESU = "resu#";
+        RESU = "result#";
         TIME = "time#";
     }
 
@@ -71,35 +71,37 @@ public class Operacja {
             OPER += "odejmowanie@";
         } else if (Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
             OPER += "setid@";
-        } else if (Pattern.compile("CLOSE").matcher(Operacja.KOMUNIKAT).find()) {
+        } else if (Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
             OPER += "releaseid@";
-        } else if (Pattern.compile("ERROR").matcher(Operacja.KOMUNIKAT).find()) {
+        } else if (Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
             OPER += "agree@";
         }
         RESU += RESU_V + "@";
     }
 
     String createMessage() {
-        if(OPER.equals("oper#setid@")) {
-            STAT += "ok@";
-            IDEN += UDPSerwer.getIdForUser() + "@";
-            message = OPER + STAT + IDEN;
-        }
-        else if(OPER.equals("oper#releaseid@")) {
-            STAT += "ok@";
-            IDEN += "null@";
-            message = OPER + STAT + IDEN;
-        }
-        else if(OPER.equals("oper#agree@")) {
-            STAT += "ok@";
-            IDEN += id_klient + "@";
-            message = OPER + STAT + IDEN;
-        }
-        else {
-            calculateResultAndGetOPERACJAString();
-            STAT += "ok@";
-            IDEN += id_klient + "@";
-            message = OPER + STAT + IDEN + RESU;
+        switch (OPER) {
+            case "oper#setid@":
+                STAT += "ok@";
+                IDEN += UDPSerwer.getIdForUser() + "@";
+                message = OPER + STAT + IDEN;
+                break;
+            case "oper#releaseid@":
+                STAT += "ok@";
+                IDEN += "null@";
+                message = OPER + STAT + IDEN;
+                break;
+            case "oper#agree@":
+                STAT += "ok@";
+                IDEN += id_klient + "@";
+                message = OPER + STAT + IDEN;
+                break;
+            default:
+                calculateResultAndGetOPERACJAString();
+                STAT += "ok@";
+                IDEN += id_klient + "@";
+                message = OPER + STAT + IDEN + RESU;
+                break;
         }
         setDefaultTextOfStatement();
         return message;
