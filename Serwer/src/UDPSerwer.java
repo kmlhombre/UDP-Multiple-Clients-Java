@@ -7,11 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UDPSerwer {
-    private static final int PORT = 8005;
+    private static final int PORT = 27000;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket receivedPacket, sendToPacket;
     private static byte[] buffer;
-    private static int BUFFER_SIZE = 128;
+    private static int BUFFER_SIZE = 256;
 
     private static Boolean[] ID = new Boolean[16];
 
@@ -64,10 +64,8 @@ public class UDPSerwer {
 
                 clientAddress = receivedPacket.getAddress(); //adres klienta
                 clientPort = receivedPacket.getPort(); //port klienta
-                System.out.println(clientPort);
                 messageReceived = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
-
-
+                System.out.println(messageReceived);
 
                 Operacja operacja = new Operacja(messageReceived);
                 messageSendTo = operacja.createMessage();

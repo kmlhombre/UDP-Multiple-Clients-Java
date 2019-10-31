@@ -3,6 +3,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,11 +13,11 @@ public class UDPKlient {
     //private static InetAddress IPAdress;
     private static InetAddress IPAdress;
 
-    private static final int PORT = 8005;
+    private static final int PORT = 27000;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket sendToPacket;
     private static byte[] buffer;
-    private static int BUFFER_SIZE = 128;
+    private static int BUFFER_SIZE = 256;
     private static String ID_USER = "default";
     private static String IDEN = "iden#";
     private static String OPER="oper#";
@@ -65,7 +66,7 @@ public class UDPKlient {
             if (ID_USER.equals("default")) {
                 //prośba o ID
 
-                messageToSend = OPER + "getid@" + IDEN + "null#" +TIME+ Czas.getGodzina() + "@";
+                messageToSend = OPER + "getid@" + IDEN + "null@" +TIME+ Czas.getGodzina() + "@";
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
 

@@ -80,28 +80,23 @@ public class Operacja {
     }
 
     String createMessage() {
-        switch (OPER) {
-            case "oper#setid@":
-                STAT += "ok@";
-                IDEN += UDPSerwer.getIdForUser() + "@";
-                message = OPER + STAT + IDEN;
-                break;
-            case "oper#releaseid@":
-                STAT += "ok@";
-                IDEN += "null@";
-                message = OPER + STAT + IDEN;
-                break;
-            case "oper#agree@":
-                STAT += "ok@";
-                IDEN += id_klient + "@";
-                message = OPER + STAT + IDEN;
-                break;
-            default:
-                calculateResultAndGetOPERACJAString();
-                STAT += "ok@";
-                IDEN += id_klient + "@";
-                message = OPER + STAT + IDEN + RESU;
-                break;
+        STAT += "ok@";
+        if(Pattern.compile("setid").matcher(OPER).find()) {
+            IDEN += UDPSerwer.getIdForUser() + "@";
+            message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
+        }
+        else if(Pattern.compile("releaseid").matcher(OPER).find()) {
+            IDEN += "null@";
+            message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
+        }
+        else if(Pattern.compile("agree").matcher(OPER).find()) {
+            IDEN += id_klient + "@";
+            message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
+        }
+        else {
+            calculateResultAndGetOPERACJAString();
+            IDEN += id_klient + "@";
+            message = OPER + STAT + IDEN + RESU + TIME + Czas.getGodzina() + "@";
         }
         setDefaultTextOfStatement();
         return message;
