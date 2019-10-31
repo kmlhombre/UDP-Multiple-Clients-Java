@@ -13,7 +13,7 @@ public class Operacja {
     private static String TIME = "time#";
 
     private static int NUMS_V[] = new int[3];
-    private static int RESU_V;
+    private static long RESU_V;
     private static long TIME_V;
     private static String KOMUNIKAT;
 
@@ -41,19 +41,24 @@ public class Operacja {
 
     private void calculateResultAndGetOPERACJAString() {
         int counter = 0;
+        int counter_number = 0;
 
         //regex wykrywajacy 3 liczby w otrzymanym komunikacie od klienta
-        Pattern p = Pattern.compile("(\\d+\\.\\d+#){2}\\d+\\.\\d+@");
+        Pattern p = Pattern.compile("num1#\\d+@num2#\\d+@num3#\\d+@");
         Matcher m = p.matcher(Operacja.KOMUNIKAT);
 
         if (m.find()) {
             String temp = m.group();
-            p = Pattern.compile("-*\\d+\\.*\\d+");
+            p = Pattern.compile("-*\\d+");
             m = p.matcher(temp);
 
             while (m.find()) {
-                NUMS_V[counter] = Integer.parseInt(m.group());
-                counter++;
+                counter_number++;
+                if(counter_number%2==0) {
+                    NUMS_V[counter] = Integer.parseInt(m.group());
+                    System.out.println(NUMS_V[counter]);
+                    counter++;
+                }
             }
         }
 
@@ -81,6 +86,7 @@ public class Operacja {
 
     String createMessage() {
         STAT += "ok@";
+        calculateResultAndGetOPERACJAString();
         if(Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += UDPSerwer.getIdForUser() + "@";
             message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
@@ -94,7 +100,6 @@ public class Operacja {
             message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
         }
         else {
-            calculateResultAndGetOPERACJAString();
             IDEN += id_klient + "@";
             message = OPER + STAT + IDEN + RESU + TIME + Czas.getGodzina() + "@";
         }

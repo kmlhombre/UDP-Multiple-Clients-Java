@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Operacja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UDPSerwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UDPSerwer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,6 +113,7 @@
       <workItem from="1572022912273" duration="618000" />
       <workItem from="1572514331116" duration="2571000" />
       <workItem from="1572518251474" duration="229000" />
+      <workItem from="1572522105495" duration="2117000" />
     </task>
     <task id="LOCAL-00001" summary="latest commin - comments to id of clientc UDP SERVER CLASS">
       <created>1571825260078</created>

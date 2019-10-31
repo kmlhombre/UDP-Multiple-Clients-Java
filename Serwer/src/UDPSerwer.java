@@ -65,11 +65,9 @@ public class UDPSerwer {
                 clientAddress = receivedPacket.getAddress(); //adres klienta
                 clientPort = receivedPacket.getPort(); //port klienta
                 messageReceived = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
-                System.out.println(messageReceived);
 
                 Operacja operacja = new Operacja(messageReceived);
                 messageSendTo = operacja.createMessage();
-                System.out.println(messageSendTo);
 
                 System.out.print("[R] ");
                 System.out.print(clientAddress);
