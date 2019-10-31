@@ -1,5 +1,0 @@
-Na ten moment do zrobienia:
-1. Test na połączeniu rzeczywistym sieciowym
-2. Test na n klientów (np 3 albo 4)
-3. Dodanie zabezpieczeń tam gdzie mogą wystąpić błędy, czyli testujemy połączenie klient-serwer
-4. Sprawdzenie co pojawia się w wireshark
