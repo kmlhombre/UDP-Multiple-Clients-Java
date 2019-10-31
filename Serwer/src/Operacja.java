@@ -12,7 +12,7 @@ public class Operacja {
     private static String RESU = "resu#";
     private static String TIME = "time#";
 
-    private static int NUMS_V[] = new int[3];
+    private static int[] NUMS_V = new int[3];
     private static long RESU_V;
     private static long TIME_V;
     private static String KOMUNIKAT;
@@ -56,7 +56,7 @@ public class Operacja {
                 counter_number++;
                 if(counter_number%2==0) {
                     NUMS_V[counter] = Integer.parseInt(m.group());
-                    System.out.println(NUMS_V[counter]);
+                    //System.out.println(NUMS_V[counter]);
                     counter++;
                 }
             }

@@ -5,20 +5,19 @@ public class Operacja {
     private static String komunikat;
     private static Scanner userEntry;
     private static boolean dzielenie;
-    private static boolean closed;
+
     //id
     private static String id;
 
     private static String OPER = "oper#";
-    private static String STAT = "stat#NULL@";
+    private static String STAT = "stat#null@";
     private static String IDEN = "iden#";
     private static String TIME="time#";
     private static String[] NUMS =new String[3];
-    private static int[] tablicaLiczby =new int[3];
+    private static long[] tablicaLiczby =new long[3];
 
     public Operacja(String ID) {
         dzielenie = false;
-        closed = false;
         komunikat = "";
         id = ID;
         NUMS[0]="num1#";
@@ -26,9 +25,10 @@ public class Operacja {
         NUMS[2]="num3#";
     }
 
-    private static void setDefaultTextOfStatement() { //zresetowanie pola operacja i iden
+    public static void setDefaultTextOfStatement() { //zresetowanie pola operacja i iden
         OPER = "oper#";
         IDEN = "iden#";
+        TIME= "time#";
         NUMS[0]="num1#";
         NUMS[1]="num2#";
         NUMS[2]="num3#";
@@ -55,40 +55,35 @@ public class Operacja {
     }
 
     public String getKomunikat() { //tworzenie komunikatu do wysłania
-        boolean errorFlag = false;
 
         IDEN += id + "@"; //doklejenie do pola iden ID klienta
+        TIME+=Czas.getGodzina() +"@";
 
         switch (wybor) {
             case 0: {
-                closed = true;
-                errorFlag = true;
+                OPER+= "close@";
                 break;
             }
             case 1: {
                 //dodawanie
-                errorFlag = false;
                 OPER += "dodawanie@";
                 getLiczby();
                 break;
             }
             case 2: {
                 //odejmowanie
-                errorFlag = false;
                 OPER += "odejmowanie@";
                 getLiczby();
                 break;
             }
             case 3: {
                 //mnożenie
-                errorFlag = false;
                 OPER += "mnozenie@";
                 getLiczby();
                 break;
             }
             case 4: {
                 //dzielenie
-                errorFlag = false;
                 OPER += "dzielenie@";
                 dzielenie = true;
                 getLiczby();
@@ -96,21 +91,16 @@ public class Operacja {
             }
             default:
                 System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
-                errorFlag = true;
+                OPER += "error@";
+                break;
         }
+        //System.out.println(OPER);
 
-        if (errorFlag) {
-            if (closed) {
-                komunikat = OPER+ "close@" + STAT +IDEN+ "@" + TIME+ Czas.getGodzina()+"@";
-            } else {
-                komunikat = OPER + "error@" + STAT + IDEN +"@" +TIME +Czas.getGodzina()+"@";
-            }
-
-        } else {
-            komunikat = OPER + STAT + IDEN +NUMS[0] + NUMS[1]+NUMS[2]+ TIME +Czas.getGodzina()+"@";
-        }
-
+        if (OPER.equals("oper#close@") || OPER.equals("oper#error@")) {
+            komunikat = OPER + STAT + IDEN + TIME;
+        } else komunikat = OPER + STAT + IDEN + NUMS[0] + NUMS[1] + NUMS[2] + TIME;
         setDefaultTextOfStatement();
+
         return komunikat;
     }
 
@@ -118,27 +108,31 @@ public class Operacja {
         System.out.println("Podaj trzy liczby");
 
         for (int i = 0; i < 3; ) {
-            tablicaLiczby[i] = userEntry.nextInt();    //wprowadzanie liczby do zmiennej tymczasowej
+            tablicaLiczby[i] = userEntry.nextLong();    //wprowadzanie liczby do zmiennej tymczasowej
 
-            //warunek sprawdzajacy czy dana operacja jest dzieleniem lub, w przypadku dzielenia, sprawdza czy aktualnie ustawiana jest pierwsza liczba (w przypadku dzielenia moze byc to 0)
-            if (tablicaLiczby[i] == 0 || !dzielenie) {
+            /*warunek sprawdzajacy czy dana operacja jest dzieleniem lub, w przypadku dzielenia,
+            *sprawdza czy aktualnie ustawiana jest pierwsza liczba (w przypadku dzielenia moze być to 0)*/
+            if (!dzielenie) {
                 //wpisanie liczby do
-                NUMS[i] += Integer.toString(tablicaLiczby[i])+"@";
+                NUMS[i] += tablicaLiczby[i] +"@";
                 i++;
-            } else {
-                if (dzielenie) { //wykrycie czy dana operacja jest dzieleniem
-                    //wykrycie czy zostalo wpisane 0 dla drugiej lub trzeciej liczby, jesli nie, liczba zostanie dopisana, jesli tak, krok dopisania zostanie pominiety
-                    if (tablicaLiczby[0] != 0) {
-                        NUMS[i] += Integer.toString(tablicaLiczby[i])+"@";
+            }
+            /*jeżeli operacja to dzielenie, sprawdź czy druga lub czy trzecia liczba to zero
+            * jeśli liczba to nie zero, liczba zostanie dopisana.
+            * jeśli tak, krok dopisania zostanie pominięty, klient musi wpisać liczbę ponownie*/
+            else {
+
+                    if (tablicaLiczby[1] != 0 && tablicaLiczby[2]!= 0) {
+                        NUMS[i] += tablicaLiczby[i] +"@";
                         i++;
                     } else {
-                        System.out.println("To nie może być zero! Wpisz jeszcze raz"); //2 i 3 liczba nie mogą być zerami
+                        System.out.println("To nie moze byc zero! Wpisz jeszcze raz"); //2 i 3 liczba nie mogą być zerami
                     }
                 }
             }
         }
     }
-}
+
 
 
 

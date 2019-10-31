@@ -35,7 +35,7 @@ public class UDPKlient {
         }
         accessServer();
     }
-    private static void showFinalMessage(String serverResponse){
+    private static void showResult(String serverResponse){
         String finalMessage="";
 
         Pattern p = Pattern.compile("\\d\\d:\\d\\d");
@@ -45,12 +45,21 @@ public class UDPKlient {
         }
         finalMessage+="Wynik: ";
 
-        p = Pattern.compile("-*\\d+\\.\\d+");
+        /*regex na wyciągnięcie z komunikatu result#otrzymany_wynik */
+        p = Pattern.compile("result#\\d+");
         m = p.matcher(serverResponse);
+        String resultHashWynik ="";
         if(m.find()){
-            finalMessage+=m.group();
+            resultHashWynik+= m.group();
         }
 
+        /*regex na wyciągnięcie z komunikatu result#otrzymany_wynik samego wyniku */
+        p = Pattern.compile("\\d+");
+        m = p.matcher(resultHashWynik);
+        if(m.find()){
+            finalMessage+= m.group();
+        }
+        /*wyswietlenie komunikatu */
         System.out.println(finalMessage);
 
     }
@@ -65,13 +74,17 @@ public class UDPKlient {
 
             if (ID_USER.equals("default")) {
                 //prośba o ID
+                /* user łączy się pierwszy raz*/
+                OPER+="getid@";
+                IDEN+="null@";
 
-                messageToSend = OPER + "getid@" + IDEN + "null@" +TIME+ Czas.getGodzina() + "@";
+
+
+                messageToSend = OPER + IDEN +TIME +Czas.getGodzina()+ "@";
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
 
                 System.out.println(messageToSend);
-                /* Klient nie otrzymuje wiadomości z ID od serwera */
 
                 //otrzymanie pakietu z id
                 receivedPacket = new DatagramPacket(buffer, buffer.length);
@@ -85,39 +98,34 @@ public class UDPKlient {
                 if (matcher.find()) {
                     ID_USER = matcher.group();
                 }
-            }
 
+            }
 
             do {
 
                 Operacja operacja = new Operacja(ID_USER);
-                operacja.pokazMenu();
+                operacja.pokazMenu(); //wyświetlenie menu
                 choose = operacja.getWybor(); //wybranie opcji z menu
 
-                if (choose != 0) {
-                    messageToSend = operacja.getKomunikat() + IDEN + ID_USER + "#" + TIME+ Czas.getGodzina() + "@";
-                    sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
+                messageToSend = operacja.getKomunikat();
+                sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
 
-                } //else {
-                    //messageToSend = operacja.getKomunikat() + IDEN + ID_USER + "#" + TIME+ Czas.getGodzina() + "@";
-                  //  sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
-                //}
                 datagramSocket.send(sendToPacket);// wyślij pakiet do serwera
                 receivedPacket = new DatagramPacket(buffer, buffer.length); //odpowiedź od serwera
                 datagramSocket.receive(receivedPacket);
                 serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
-                if(choose !=0 ) {
-                    showFinalMessage(serverResponse);
-                }
-                System.out.println("Odpowiedź serwera: " + serverResponse);
+                /* wyświetlenie wyniku*/
+               if (choose==1 || choose ==2 || choose ==3 || choose==4) showResult(serverResponse);
+               /* */
+                //System.out.println("Odpowiedź serwera: " + serverResponse);
 
-            } while (choose != 0); //jeżeli klient wpisze close zamknięcie gniazda
+            } while (choose != 0); //jeżeli wybor==0 komunikat close, zamknięcie gniazda
 
         } catch (IOException ioEx) {
             ioEx.printStackTrace();
         } finally {
-            System.out.println("Rozłączanie klienta... ");
+            System.out.println("Rozlaczanie klienta... ");
             datagramSocket.close();
 
         }
