@@ -81,15 +81,15 @@ public class Operacja {
 
     String createMessage() {
         STAT += "ok@";
-        if(Pattern.compile("setid").matcher(OPER).find()) {
+        if(Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += UDPSerwer.getIdForUser() + "@";
             message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
         }
-        else if(Pattern.compile("releaseid").matcher(OPER).find()) {
+        else if(Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += "null@";
             message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
         }
-        else if(Pattern.compile("agree").matcher(OPER).find()) {
+        else if(Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += id_klient + "@";
             message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
         }
