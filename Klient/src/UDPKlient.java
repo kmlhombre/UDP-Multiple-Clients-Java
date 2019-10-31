@@ -80,7 +80,7 @@ public class UDPKlient {
 
 
 
-                messageToSend = OPER + IDEN +TIME +Czas.getGodzina()+ "@";
+                messageToSend = OPER + IDEN;
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
 

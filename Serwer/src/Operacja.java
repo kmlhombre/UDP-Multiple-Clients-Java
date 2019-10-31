@@ -86,22 +86,25 @@ public class Operacja {
 
     String createMessage() {
         STAT += "ok@";
+        TIME+=Czas.getGodzina()+"@";
+        /* podobno przy get id i set id nie przesyłąć godziny - ale nie pamiętam */
+
         calculateResultAndGetOPERACJAString();
         if(Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += UDPSerwer.getIdForUser() + "@";
-            message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
+            message = OPER + STAT + IDEN ;
         }
         else if(Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += "null@";
-            message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
+            message = OPER + STAT + IDEN + TIME;
         }
         else if(Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += id_klient + "@";
-            message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
+            message = OPER + STAT + IDEN + TIME;
         }
         else {
             IDEN += id_klient + "@";
-            message = OPER + STAT + IDEN + RESU + TIME + Czas.getGodzina() + "@";
+            message = OPER + STAT + IDEN + RESU + TIME ;
         }
         setDefaultTextOfStatement();
         return message;
