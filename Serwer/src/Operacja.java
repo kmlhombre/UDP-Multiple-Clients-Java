@@ -12,9 +12,8 @@ public class Operacja {
     private static String RESU = "resu#";
     private static String TIME = "time#";
 
-    private static int[] NUMS_V = new int[3];
+    private static long[] NUMS_V = new long[3];
     private static long RESU_V;
-    private static long TIME_V;
     private static String KOMUNIKAT;
 
 
