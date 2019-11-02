@@ -6,6 +6,7 @@ public class Operacja {
     private String message;
     private String id_klient;
 
+    //klucze wykorzystywane w komunikacie
     private static String OPER = "oper#";
     private static String STAT = "stat#";
     private static String IDEN = "iden#";
@@ -77,8 +78,6 @@ public class Operacja {
             OPER += "setid@";
         } else if (Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
             OPER += "releaseid@";
-        } else if (Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
-            OPER += "agree@";
         }
         RESU += RESU_V + "@";
     }
@@ -91,14 +90,10 @@ public class Operacja {
         calculateResultAndGetOPERACJAString();
         if(Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += UDPSerwer.getIdForUser() + "@";
-            message = OPER + STAT + IDEN ;
+            message = OPER + STAT + IDEN + TIME ;
         }
         else if(Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += "null@";
-            message = OPER + STAT + IDEN + TIME;
-        }
-        else if(Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
-            IDEN += id_klient + "@";
             message = OPER + STAT + IDEN + TIME;
         }
         else {

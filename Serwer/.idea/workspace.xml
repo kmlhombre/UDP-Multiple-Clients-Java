@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d57ee84e-c36d-4976-bc30-2f70d50428c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Klient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Klient/src/UDPKlient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/src/UDPKlient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Czas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/MainKlientClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/MainKlientClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/Operacja.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/UDPKlient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/UDPKlient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Serwer/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/Czas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Serwer/UDPSerwer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/UDPSerwer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Operacja.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -122,7 +123,9 @@
       <workItem from="1572518251474" duration="229000" />
       <workItem from="1572522105495" duration="2117000" />
       <workItem from="1572604192628" duration="45000" />
-      <workItem from="1572604344352" duration="1963000" />
+      <workItem from="1572604344352" duration="2170000" />
+      <workItem from="1572706652895" duration="986000" />
+      <workItem from="1572712738029" duration="3382000" />
     </task>
     <task id="LOCAL-00001" summary="latest commin - comments to id of clientc UDP SERVER CLASS">
       <created>1571825260078</created>
