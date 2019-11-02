@@ -38,23 +38,18 @@ public class UDPKlient {
     private static void showResult(String serverResponse){
         String finalMessage="";
 
-        Pattern p = Pattern.compile("\\d\\d:\\d\\d");
-        Matcher m = p.matcher(serverResponse);
-        if(m.find()){
-            finalMessage+="[" + m.group() + "] ";
-        }
         finalMessage+="Wynik: ";
 
         /*regex na wyciągnięcie z komunikatu result#otrzymany_wynik */
-        p = Pattern.compile("result#\\d+");
-        m = p.matcher(serverResponse);
+        Pattern p = Pattern.compile("result#-*\\d+");
+        Matcher m = p.matcher(serverResponse);
         String resultHashWynik ="";
         if(m.find()){
             resultHashWynik+= m.group();
         }
 
         /*regex na wyciągnięcie z komunikatu result#otrzymany_wynik samego wyniku */
-        p = Pattern.compile("\\d+");
+        p = Pattern.compile("-*\\d+");
         m = p.matcher(resultHashWynik);
         if(m.find()){
             finalMessage+= m.group();
@@ -80,7 +75,7 @@ public class UDPKlient {
 
 
 
-                messageToSend = OPER + IDEN;
+                messageToSend = OPER + "stat#null@" + IDEN;
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
 

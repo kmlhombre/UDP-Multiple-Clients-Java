@@ -6,15 +6,15 @@ public class Operacja {
     private String message;
     private String id_klient;
 
+    //klucze wykorzystywane w komunikacie
     private static String OPER = "oper#";
     private static String STAT = "stat#";
     private static String IDEN = "iden#";
     private static String RESU = "resu#";
     private static String TIME = "time#";
 
-    private static int[] NUMS_V = new int[3];
+    private static long[] NUMS_V = new long[3];
     private static long RESU_V;
-    private static long TIME_V;
     private static String KOMUNIKAT;
 
 
@@ -49,7 +49,7 @@ public class Operacja {
 
         if (m.find()) {
             String temp = m.group();
-            p = Pattern.compile("-*\\d+");
+            p = Pattern.compile("-?\\d+");
             m = p.matcher(temp);
 
             while (m.find()) {
@@ -78,8 +78,6 @@ public class Operacja {
             OPER += "setid@";
         } else if (Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
             OPER += "releaseid@";
-        } else if (Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
-            OPER += "agree@";
         }
         RESU += RESU_V + "@";
     }
@@ -92,14 +90,10 @@ public class Operacja {
         calculateResultAndGetOPERACJAString();
         if(Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += UDPSerwer.getIdForUser() + "@";
-            message = OPER + STAT + IDEN ;
+            message = OPER + STAT + IDEN + TIME ;
         }
         else if(Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += "null@";
-            message = OPER + STAT + IDEN + TIME;
-        }
-        else if(Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
-            IDEN += id_klient + "@";
             message = OPER + STAT + IDEN + TIME;
         }
         else {
