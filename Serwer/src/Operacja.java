@@ -6,15 +6,15 @@ public class Operacja {
     private String message;
     private String id_klient;
 
-    //klucze wykorzystywane w komunikacie
     private static String OPER = "oper#";
     private static String STAT = "stat#";
     private static String IDEN = "iden#";
     private static String RESU = "resu#";
     private static String TIME = "time#";
 
-    private static long[] NUMS_V = new long[3];
+    private static int[] NUMS_V = new int[3];
     private static long RESU_V;
+    private static long TIME_V;
     private static String KOMUNIKAT;
 
 
@@ -44,7 +44,7 @@ public class Operacja {
         int counter_number = 0;
 
         //regex wykrywajacy 3 liczby w otrzymanym komunikacie od klienta
-        Pattern p = Pattern.compile("num1#\\d+@num2#\\d+@num3#\\d+@");
+        Pattern p = Pattern.compile("num1#-?\\d+@num2#-?\\d+@num3#-?\\d+@");
         Matcher m = p.matcher(Operacja.KOMUNIKAT);
 
         if (m.find()) {
@@ -78,14 +78,15 @@ public class Operacja {
             OPER += "setid@";
         } else if (Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
             OPER += "releaseid@";
+        } else if (Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
+            OPER += "agree@";
         }
         RESU += RESU_V + "@";
     }
 
     String createMessage() {
         STAT += "ok@";
-        TIME+=Czas.getGodzina()+"@";
-        /* podobno przy get id i set id nie przesyłąć godziny - ale nie pamiętam */
+        TIME+=Czas.getGodzina() + "@";
 
         calculateResultAndGetOPERACJAString();
         if(Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
@@ -96,6 +97,10 @@ public class Operacja {
             IDEN += "null@";
             message = OPER + STAT + IDEN + TIME;
         }
+//        else if(Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
+//            IDEN += id_klient + "@";
+//            message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
+//        }
         else {
             IDEN += id_klient + "@";
             message = OPER + STAT + IDEN + RESU + TIME ;

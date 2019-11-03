@@ -13,7 +13,7 @@ public class UDPKlient {
     //private static InetAddress IPAdress;
     private static InetAddress IPAdress;
 
-    private static final int PORT = 27000;
+    private static final int PORT = 27001;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket sendToPacket;
     private static byte[] buffer;
@@ -37,11 +37,16 @@ public class UDPKlient {
     }
     private static void showResult(String serverResponse){
         String finalMessage="";
-
+//
+//        Pattern p = Pattern.compile("\\d\\d:\\d\\d");
+//        Matcher m = p.matcher(serverResponse);
+//        if(m.find()){
+//            finalMessage+="[" + m.group() + "] ";
+//        }
         finalMessage+="Wynik: ";
 
         /*regex na wyciągnięcie z komunikatu result#otrzymany_wynik */
-        Pattern p = Pattern.compile("result#-*\\d+");
+        Pattern p = Pattern.compile("result#-?\\d+");
         Matcher m = p.matcher(serverResponse);
         String resultHashWynik ="";
         if(m.find()){
@@ -49,7 +54,7 @@ public class UDPKlient {
         }
 
         /*regex na wyciągnięcie z komunikatu result#otrzymany_wynik samego wyniku */
-        p = Pattern.compile("-*\\d+");
+        p = Pattern.compile("-?\\d+");
         m = p.matcher(resultHashWynik);
         if(m.find()){
             finalMessage+= m.group();
@@ -72,10 +77,10 @@ public class UDPKlient {
                 /* user łączy się pierwszy raz*/
                 OPER+="getid@";
                 IDEN+="null@";
+                TIME+= Czas.getGodzina()+ "@";
 
 
-
-                messageToSend = OPER + "stat#null@" + IDEN;
+                messageToSend = OPER + IDEN + TIME;
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
 
@@ -102,6 +107,7 @@ public class UDPKlient {
                 operacja.pokazMenu(); //wyświetlenie menu
                 choose = operacja.getWybor(); //wybranie opcji z menu
 
+
                 messageToSend = operacja.getKomunikat();
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
 
@@ -109,6 +115,7 @@ public class UDPKlient {
                 receivedPacket = new DatagramPacket(buffer, buffer.length); //odpowiedź od serwera
                 datagramSocket.receive(receivedPacket);
                 serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
+
 
                 /* wyświetlenie wyniku*/
                if (choose==1 || choose ==2 || choose ==3 || choose==4) showResult(serverResponse);

@@ -23,6 +23,9 @@ public class Operacja {
         NUMS[0]="num1#";
         NUMS[1]="num2#";
         NUMS[2]="num3#";
+        tablicaLiczby[0]=1; // inicjalizacja jedynkami ( żeby nie aktywować petli dla dzielenia)
+        tablicaLiczby[1]=1;
+        tablicaLiczby[2]=1;
     }
 
     public static void setDefaultTextOfStatement() { //zresetowanie pola operacja i iden
@@ -46,12 +49,17 @@ public class Operacja {
 
         System.out.println("-----------------");
         System.out.println("Czy zakończyć działanie? Jeśli tak, wpisz 0");
+
         userEntry = new Scanner(System.in);
         wybor = userEntry.nextInt();
     }
-
     public int getWybor() { //zwraca numer wybranego działania wybrany przez użytkownika
+        while(wybor>4){
+            System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
+            pokazMenu();
+        }
         return wybor;
+
     }
 
     public String getKomunikat() { //tworzenie komunikatu do wysłania
@@ -59,49 +67,36 @@ public class Operacja {
         IDEN += id + "@"; //doklejenie do pola iden ID klienta
         TIME+=Czas.getGodzina() +"@";
 
-        switch (wybor) {
-            case 0: {
-                OPER+= "close@";
-                break;
-            }
-            case 1: {
-                //dodawanie
-                OPER += "dodawanie@";
-                getLiczby();
-                break;
-            }
-            case 2: {
-                //odejmowanie
-                OPER += "odejmowanie@";
-                getLiczby();
-                break;
-            }
-            case 3: {
-                //mnożenie
-                OPER += "mnozenie@";
-                getLiczby();
-                break;
-            }
-            case 4: {
-                //dzielenie
-                OPER += "dzielenie@";
-                dzielenie = true;
-                getLiczby();
-                break;
-            }
-            default:
-                System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
-                OPER += "error@";
-                break;
+        if (wybor == 0) {
+            OPER += "close@";
+        } else if (wybor == 1) {//dodawanie
+            OPER += "dodawanie@";
+            getLiczby();
+        } else if (wybor == 2) {//odejmowanie
+            OPER += "odejmowanie@";
+            getLiczby();
+        } else if (wybor == 3) {//mnożenie
+            OPER += "mnozenie@";
+            getLiczby();
+        } else if (wybor == 4) {//dzielenie
+            OPER += "dzielenie@";
+            dzielenie = true;
+            getLiczby();
         }
+      //  else {
+          //  System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
+           // OPER += "error@";
+     //   }
         //System.out.println(OPER);
 
-        if (OPER.equals("oper#close@") || OPER.equals("oper#error@")) {
-            komunikat = OPER + STAT + IDEN + TIME;
-        } else komunikat = OPER + STAT + IDEN + NUMS[0] + NUMS[1] + NUMS[2] + TIME;
-        setDefaultTextOfStatement();
+            if (OPER.equals("oper#close@")) {
+                // || OPER.equals("oper#error@")) {
+                komunikat = OPER + STAT + IDEN + TIME;
+            } else komunikat = OPER + STAT + IDEN + NUMS[0] + NUMS[1] + NUMS[2] + TIME;
 
-        return komunikat;
+            setDefaultTextOfStatement();
+            return komunikat;
+
     }
 
     private static void getLiczby() {
@@ -117,12 +112,17 @@ public class Operacja {
                 NUMS[i] += tablicaLiczby[i] +"@";
                 i++;
             }
+
             /*jeżeli operacja to dzielenie, sprawdź czy druga lub czy trzecia liczba to zero
             * jeśli liczba to nie zero, liczba zostanie dopisana.
             * jeśli tak, krok dopisania zostanie pominięty, klient musi wpisać liczbę ponownie*/
             else {
+              //  System.out.println(tablicaLiczby[0]);
+             //   System.out.println(tablicaLiczby[1]);
+               // System.out.println(tablicaLiczby[2]);
 
-                    if (tablicaLiczby[1] != 0 && tablicaLiczby[2]!= 0) {
+
+                if (tablicaLiczby[1] != 0 && tablicaLiczby[2]!= 0) {
                         NUMS[i] += tablicaLiczby[i] +"@";
                         i++;
                     } else {

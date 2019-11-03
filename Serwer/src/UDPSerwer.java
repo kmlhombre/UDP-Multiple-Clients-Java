@@ -57,8 +57,6 @@ public class UDPSerwer {
                 buffer = new byte[BUFFER_SIZE];
                 receivedPacket = new DatagramPacket(buffer, buffer.length);
 
-
-                /*tego serwer nie dostaje*/
                 datagramSocket.receive(receivedPacket); //odebranie wiadomości od klienta
                 /* ---------------------*/
 
