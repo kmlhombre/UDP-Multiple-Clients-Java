@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Operacja {
@@ -12,7 +13,7 @@ public class Operacja {
     private static String OPER = "oper#";
     private static String STAT = "stat#null@";
     private static String IDEN = "iden#";
-    private static String TIME="time#";
+    private static String TIME= "time#";
     private static String[] NUMS =new String[3];
     private static long[] tablicaLiczby =new long[3];
 
@@ -38,7 +39,7 @@ public class Operacja {
 
     }
 
-    void pokazMenu() { //wyświetlenie menu
+    void pokazMenu() throws InputMismatchException { //wyświetlenie menu
         System.out.println("Jaka operacja? ");
         System.out.println("--------------- ");
         System.out.println("0. Zakończ ");
@@ -49,15 +50,19 @@ public class Operacja {
 
         System.out.println("-----------------");
         System.out.println("Czy zakończyć działanie? Jeśli tak, wpisz 0");
-
         userEntry = new Scanner(System.in);
         wybor = userEntry.nextInt();
+
+
     }
-    public int getWybor() { //zwraca numer wybranego działania wybrany przez użytkownika
-        while(wybor>4){
+    public int getWybor() throws NumberFormatException { //zwraca numer wybranego działania wybrany przez użytkownika
+
+        /*blokada przed błędnym wpisaniem wyboru*/
+        while((wybor>4) ){
             System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
             pokazMenu();
         }
+        /**/
         return wybor;
 
     }
@@ -83,12 +88,6 @@ public class Operacja {
             dzielenie = true;
             getLiczby();
         }
-      //  else {
-          //  System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
-           // OPER += "error@";
-     //   }
-        //System.out.println(OPER);
-
             if (OPER.equals("oper#close@")) {
                 // || OPER.equals("oper#error@")) {
                 komunikat = OPER + STAT + IDEN + TIME;
@@ -117,11 +116,6 @@ public class Operacja {
             * jeśli liczba to nie zero, liczba zostanie dopisana.
             * jeśli tak, krok dopisania zostanie pominięty, klient musi wpisać liczbę ponownie*/
             else {
-              //  System.out.println(tablicaLiczby[0]);
-             //   System.out.println(tablicaLiczby[1]);
-               // System.out.println(tablicaLiczby[2]);
-
-
                 if (tablicaLiczby[1] != 0 && tablicaLiczby[2]!= 0) {
                         NUMS[i] += tablicaLiczby[i] +"@";
                         i++;

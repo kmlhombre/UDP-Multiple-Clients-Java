@@ -20,6 +20,7 @@ public class UDPKlient {
     private static int BUFFER_SIZE = 256;
     private static String ID_USER = "default";
     private static String IDEN = "iden#";
+    private static String STAT="stat#null@";
     private static String OPER="oper#";
     private static String TIME="time#";
 
@@ -80,16 +81,20 @@ public class UDPKlient {
                 TIME+= Czas.getGodzina()+ "@";
 
 
-                messageToSend = OPER + IDEN + TIME;
+                messageToSend = OPER + STAT+ IDEN + TIME; //wiaodmość do wysłania
+
+                /* tworzenie do wysłania i wysyłanie datagramu */
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT);
                 datagramSocket.send(sendToPacket);
-
+                /* tworzenie do wysłania i wysyłanie datagramu */
                 System.out.println(messageToSend);
 
-                //otrzymanie pakietu z id
+
+                /* otrzymanie datagramu z id  */
                 receivedPacket = new DatagramPacket(buffer, buffer.length);
                 datagramSocket.receive(receivedPacket);
                 serverResponse = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
+                /* otrzymanie datagramu z id  */
 
                 System.out.println((serverResponse));
                 //regex aby otrzymac id
