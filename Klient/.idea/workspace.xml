@@ -4,12 +4,15 @@
     <list default="true" id="61d7a7ee-b331-40cb-a017-e42e437fd35a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/Czas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/MainKlientClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/MainKlientClass.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/UDPKlient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/UDPKlient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Operacja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UDPKlient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UDPKlient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/UDPSerwer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/UDPSerwer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/Operacja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Serwer/src/UDPSerwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/UDPSerwer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,6 +100,7 @@
       <workItem from="1572607369591" duration="319000" />
       <workItem from="1572712748756" duration="1345000" />
       <workItem from="1572719855666" duration="609000" />
+      <workItem from="1573129986663" duration="3574000" />
     </task>
     <servers />
   </component>

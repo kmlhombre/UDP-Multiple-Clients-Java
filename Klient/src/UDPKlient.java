@@ -13,7 +13,7 @@ public class UDPKlient {
     //private static InetAddress IPAdress;
     private static InetAddress IPAdress;
 
-    private static final int PORT = 27001;
+    private static final int PORT = 8001;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket sendToPacket;
     private static byte[] buffer;

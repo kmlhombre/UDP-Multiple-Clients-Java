@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,6 +18,8 @@ public class Operacja {
     private static long TIME_V;
     private static String KOMUNIKAT;
 
+    private static ArrayList<Long> sum_n = new ArrayList<Long>();
+    private static Boolean sum = false;
 
     public Operacja(String KOMUNIKAT) {
         Operacja.KOMUNIKAT = KOMUNIKAT;
@@ -37,49 +40,82 @@ public class Operacja {
         IDEN = "iden#";
         RESU = "result#";
         TIME = "time#";
+        sum = false;
+        sum_n.clear();
     }
 
     private void calculateResultAndGetOPERACJAString() {
-        int counter = 0;
-        int counter_number = 0;
+        if (Pattern.compile("dodawanie").matcher(Operacja.KOMUNIKAT).find()) {
+            sum = true;
+        }
+        if (!sum) {
+            int counter = 0;
+            int counter_number = 0;
 
-        //regex wykrywajacy 3 liczby w otrzymanym komunikacie od klienta
-        Pattern p = Pattern.compile("num1#-?\\d+@num2#-?\\d+@num3#-?\\d+@");
-        Matcher m = p.matcher(Operacja.KOMUNIKAT);
+            //regex wykrywajacy 3 liczby w otrzymanym komunikacie od klienta
+            Pattern p = Pattern.compile("num1#-?\\d+@num2#-?\\d+@num3#-?\\d+@");
+            Matcher m = p.matcher(Operacja.KOMUNIKAT);
 
-        if (m.find()) {
-            String temp = m.group();
-            p = Pattern.compile("-?\\d+");
-            m = p.matcher(temp);
+            if (m.find()) {
+                String temp = m.group();
+                p = Pattern.compile("-?\\d+");
+                m = p.matcher(temp);
 
-            while (m.find()) {
-                counter_number++;
-                if(counter_number%2==0) {
-                    NUMS_V[counter] = Integer.parseInt(m.group());
-                    //System.out.println(NUMS_V[counter]);
-                    counter++;
+                while (m.find()) {
+                    counter_number++;
+                    if (counter_number % 2 == 0) {
+                        NUMS_V[counter] = Integer.parseInt(m.group());
+                        //System.out.println(NUMS_V[counter]);
+                        counter++;
+                    }
                 }
             }
-        }
 
-        if (Pattern.compile("mnozenie").matcher(Operacja.KOMUNIKAT).find()) {
-            RESU_V = NUMS_V[0] * NUMS_V[1] * NUMS_V[2];
-            OPER += "mnozenie@";
-        } else if (Pattern.compile("dzielenie").matcher(Operacja.KOMUNIKAT).find()) {
-            RESU_V = NUMS_V[0] / NUMS_V[1] / NUMS_V[2];
-            OPER += "dzielenie@";
-        } else if (Pattern.compile("dodawanie").matcher(Operacja.KOMUNIKAT).find()) {
-            RESU_V = NUMS_V[0] + NUMS_V[1] + NUMS_V[2];
+            if (Pattern.compile("mnozenie").matcher(Operacja.KOMUNIKAT).find()) {
+                RESU_V = NUMS_V[0] * NUMS_V[1] * NUMS_V[2];
+                OPER += "mnozenie@";
+            } else if (Pattern.compile("dzielenie").matcher(Operacja.KOMUNIKAT).find()) {
+                RESU_V = NUMS_V[0] / NUMS_V[1] / NUMS_V[2];
+                OPER += "dzielenie@";
+            } else if (Pattern.compile("dodawanie").matcher(Operacja.KOMUNIKAT).find()) {
+                RESU_V = NUMS_V[0] + NUMS_V[1] + NUMS_V[2];
+                OPER += "dodawanie@";
+            } else if (Pattern.compile("odejmowanie").matcher(Operacja.KOMUNIKAT).find()) {
+                RESU_V = NUMS_V[0] - NUMS_V[1] - NUMS_V[2];
+                OPER += "odejmowanie@";
+            } else if (Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
+                OPER += "setid@";
+            } else if (Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
+                OPER += "releaseid@";
+            } else if (Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
+                OPER += "agree@";
+            }
+
+        }
+        else {
+            Pattern p = Pattern.compile("(num\\d+#-?\\d+@)+");
+            Matcher m = p.matcher(Operacja.KOMUNIKAT);
+
+            if(m.find()) {
+                p = Pattern.compile("-?\\d+");
+                m = p.matcher(m.group());
+
+                int count = 0;
+                while(m.find()) {
+                    count++;
+                    if (count % 2 == 0) {
+                        int temp = Integer.parseInt(m.group());
+                        sum_n.add((long) temp);
+                    }
+                }
+            }
+
             OPER += "dodawanie@";
-        } else if (Pattern.compile("odejmowanie").matcher(Operacja.KOMUNIKAT).find()) {
-            RESU_V = NUMS_V[0] - NUMS_V[1] - NUMS_V[2];
-            OPER += "odejmowanie@";
-        } else if (Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
-            OPER += "setid@";
-        } else if (Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
-            OPER += "releaseid@";
-        } else if (Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
-            OPER += "agree@";
+            RESU_V = 0;
+
+            for(int i=0; i<sum_n.size(); i++) {
+                RESU_V += sum_n.get(i);
+            }
         }
         RESU += RESU_V + "@";
     }
@@ -91,7 +127,7 @@ public class Operacja {
         calculateResultAndGetOPERACJAString();
         if(Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += UDPSerwer.getIdForUser() + "@";
-            message = OPER + STAT + IDEN + TIME ;
+            message = OPER + STAT + IDEN + TIME;
         }
         else if(Pattern.compile("close").matcher(Operacja.KOMUNIKAT).find()) {
             IDEN += "null@";
@@ -103,7 +139,7 @@ public class Operacja {
 //        }
         else {
             IDEN += id_klient + "@";
-            message = OPER + STAT + IDEN + RESU + TIME ;
+            message = OPER + STAT + IDEN + RESU + TIME;
         }
         setDefaultTextOfStatement();
         return message;
