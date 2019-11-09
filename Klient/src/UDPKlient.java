@@ -111,9 +111,8 @@ public class UDPKlient {
                 Operacja operacja = new Operacja(ID_USER);
                 operacja.pokazMenu(); //wyświetlenie menu
                 choose = operacja.getWybor(); //wybranie opcji z menu
-
-
                 messageToSend = operacja.getKomunikat();
+
                 sendToPacket = new DatagramPacket(messageToSend.getBytes(), messageToSend.length(), IPAdress, PORT); //stwórz nowy pakiet do wysłania
 
                 datagramSocket.send(sendToPacket);// wyślij pakiet do serwera

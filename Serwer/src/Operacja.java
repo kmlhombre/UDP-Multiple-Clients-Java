@@ -77,10 +77,12 @@ public class Operacja {
             } else if (Pattern.compile("dzielenie").matcher(Operacja.KOMUNIKAT).find()) {
                 RESU_V = NUMS_V[0] / NUMS_V[1] / NUMS_V[2];
                 OPER += "dzielenie@";
-            } else if (Pattern.compile("dodawanie").matcher(Operacja.KOMUNIKAT).find()) {
-                RESU_V = NUMS_V[0] + NUMS_V[1] + NUMS_V[2];
-                OPER += "dodawanie@";
-            } else if (Pattern.compile("odejmowanie").matcher(Operacja.KOMUNIKAT).find()) {
+            }
+//            else if (Pattern.compile("dodawanie").matcher(Operacja.KOMUNIKAT).find()) {
+//                RESU_V = NUMS_V[0] + NUMS_V[1] + NUMS_V[2];
+//                OPER += "dodawanie@";
+//            }
+        else if (Pattern.compile("odejmowanie").matcher(Operacja.KOMUNIKAT).find()) {
                 RESU_V = NUMS_V[0] - NUMS_V[1] - NUMS_V[2];
                 OPER += "odejmowanie@";
             } else if (Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
@@ -133,10 +135,6 @@ public class Operacja {
             IDEN += "null@";
             message = OPER + STAT + IDEN + TIME;
         }
-//        else if(Pattern.compile("error").matcher(Operacja.KOMUNIKAT).find()) {
-//            IDEN += id_klient + "@";
-//            message = OPER + STAT + IDEN + TIME + Czas.getGodzina() + "@";
-//        }
         else {
             IDEN += id_klient + "@";
             message = OPER + STAT + IDEN + RESU + TIME;

@@ -7,7 +7,7 @@ public class Operacja {
     private static String komunikat;
     private static Scanner userEntry;
     private static boolean dzielenie;
-
+    private static int iloscLiczb;
     //id
     private static String id;
 
@@ -16,7 +16,7 @@ public class Operacja {
     private static String IDEN = "iden#";
     private static String TIME= "time#";
     private static String[] NUMS =new String[3];
-    private static long[] tablicaLiczby =new long[3];
+    private static long[] tablicaLiczby = new long[3];
     private static ArrayList<Long> sum_n = new ArrayList<Long>();
 
     private static Boolean sum;
@@ -65,7 +65,7 @@ public class Operacja {
 
         /*blokada przed błędnym wpisaniem wyboru*/
         while((wybor>4) ){
-            System.out.println("Zły wybór. Wpisz ponownie od 1 do 4");
+            System.out.println("Zly wybor. Wpisz ponownie od 1 do 4");
             pokazMenu();
         }
         /**/
@@ -82,7 +82,7 @@ public class Operacja {
             OPER += "close@";
         } else if (wybor == 1) {//dodawanie
             OPER += "dodawanie@";
-            sum=true;
+            sum= true;
             getLiczby();
         } else if (wybor == 2) {//odejmowanie
             OPER += "odejmowanie@";
@@ -96,40 +96,38 @@ public class Operacja {
             getLiczby();
         }
             if (OPER.equals("oper#close@")) {
-                // || OPER.equals("oper#error@")) {
                 komunikat = OPER + STAT + IDEN + TIME;
             } else {
-                if(sum) {
+                if(sum && iloscLiczb!= 3) {
+
                     komunikat = OPER + STAT + IDEN;
 
                     for(int i=0; i<sum_n.size(); i++) {
                         komunikat += "num" + (i+1) + "#" + sum_n.get(i) + "@";
                     }
-
-                    komunikat += TIME;
                 }
                 else {
-                    komunikat = OPER + STAT + IDEN + NUMS[0] + NUMS[1] + NUMS[2] + TIME;
+                    komunikat = OPER + STAT + IDEN + NUMS[0] + NUMS[1] + NUMS[2] ;
                 }
+                komunikat += TIME;
             }
 
             setDefaultTextOfStatement();
             return komunikat;
-
     }
 
     private static void getLiczby() {
-        if (sum) {
-            System.out.println("Podaj ile liczb wpisac");
-            int n = userEntry.nextInt();
+        System.out.println("Podaj ile liczb wpisac ");
+        iloscLiczb = userEntry.nextInt();
 
-            for(int i=0; i<n; i++) {
+        if (sum && iloscLiczb !=3) {
+            System.out.println("Wpisz liczby ");
+            for(int i=0; i< iloscLiczb; i++) {
                 long liczba = userEntry.nextLong();
                 sum_n.add(liczba);
             }
         } else {
             System.out.println("Podaj trzy liczby");
-
             for (int i = 0; i < 3; ) {
                 tablicaLiczby[i] = userEntry.nextLong();    //wprowadzanie liczby do zmiennej tymczasowej
 
