@@ -83,8 +83,8 @@ public class Operacja {
         } else if (wybor == 1) {//dodawanie
             OPER += "dodawanie@";
             sumFlag = true;
-            setIloscLiczb();
-            getLiczby();
+            menuIloscLiczb();
+          //  getLiczby();
         } else if (wybor == 2) {//odejmowanie
             OPER += "odejmowanie@";
             getLiczby();
@@ -119,9 +119,28 @@ public class Operacja {
         setDefaultTextOfStatement(); //ustawienie domyślnych wartości dla pól
         return komunikat;
     }
+    private static void menuIloscLiczb(){
+        System.out.println("Wpisz 'a' jeśli chcesz wpisać trzy liczby");
+        System.out.println("Wpisz 'n' jeśli chcesz wpisać n liczb");
+        char opcja = userEntry.next().charAt(0);
 
+        /*jeśli klient wpisuje 3 liczby*/
+        if(opcja=='a'){
+            iloscLiczb=3;
+        }
+        /*jeśli klient wpisuje 3 liczby*/
+
+        /*jeśli klient wpisuje n liczb*/
+        else if(opcja=='n'){
+            setIloscLiczb();
+        }
+        /*jeśli klient wpisuje n liczb*/
+
+        getLiczby();
+
+    }
     private static void setIloscLiczb() {
-        System.out.println("Podaj ile liczb wpisac ");
+        System.out.println("Podaj ilosc liczb");
         iloscLiczb = userEntry.nextInt();
     }
 
