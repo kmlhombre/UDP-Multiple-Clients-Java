@@ -7,7 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UDPSerwer {
-    private static final int PORT = 8001;
+    private static final int PORT = 8005
+            ;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket receivedPacket, sendToPacket;
     private static byte[] buffer;

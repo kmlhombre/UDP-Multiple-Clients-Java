@@ -19,7 +19,6 @@ public class Operacja {
     private static String KOMUNIKAT;
 
     private static ArrayList<Long> sum_n = new ArrayList<Long>();
-    private static Boolean sum = false;
 
     public Operacja(String KOMUNIKAT) {
         Operacja.KOMUNIKAT = KOMUNIKAT;
@@ -40,15 +39,37 @@ public class Operacja {
         IDEN = "iden#";
         RESU = "result#";
         TIME = "time#";
-        sum = false;
         sum_n.clear();
     }
 
     private void calculateResultAndGetOPERACJAString() {
         if (Pattern.compile("dodawanie").matcher(Operacja.KOMUNIKAT).find()) {
-            sum = true;
+            OPER += "dodawanie@";
+
+                Pattern p = Pattern.compile("(num\\d+#-?\\d+@)+");
+                Matcher m = p.matcher(Operacja.KOMUNIKAT);
+
+                if(m.find()) {
+                    p = Pattern.compile("-?\\d+");
+                    m = p.matcher(m.group());
+
+                    int count = 0;
+                    while(m.find()) {
+                        count++;
+                        if (count % 2 == 0) {
+                            int temp = Integer.parseInt(m.group());
+                            sum_n.add((long) temp);
+                        }
+                    }
+                }
+                RESU_V = 0;
+
+            for (Long aLong : sum_n) {
+                RESU_V += aLong;
+            }
+            RESU += RESU_V + "@";
         }
-        if (!sum) {
+        else {
             int counter = 0;
             int counter_number = 0;
 
@@ -70,19 +91,13 @@ public class Operacja {
                     }
                 }
             }
-
             if (Pattern.compile("mnozenie").matcher(Operacja.KOMUNIKAT).find()) {
                 RESU_V = NUMS_V[0] * NUMS_V[1] * NUMS_V[2];
                 OPER += "mnozenie@";
             } else if (Pattern.compile("dzielenie").matcher(Operacja.KOMUNIKAT).find()) {
                 RESU_V = NUMS_V[0] / NUMS_V[1] / NUMS_V[2];
                 OPER += "dzielenie@";
-            }
-//            else if (Pattern.compile("dodawanie").matcher(Operacja.KOMUNIKAT).find()) {
-//                RESU_V = NUMS_V[0] + NUMS_V[1] + NUMS_V[2];
-//                OPER += "dodawanie@";
-//            }
-        else if (Pattern.compile("odejmowanie").matcher(Operacja.KOMUNIKAT).find()) {
+            } else if (Pattern.compile("odejmowanie").matcher(Operacja.KOMUNIKAT).find()) {
                 RESU_V = NUMS_V[0] - NUMS_V[1] - NUMS_V[2];
                 OPER += "odejmowanie@";
             } else if (Pattern.compile("getid").matcher(Operacja.KOMUNIKAT).find()) {
@@ -94,32 +109,10 @@ public class Operacja {
             }
 
         }
-        else {
-            Pattern p = Pattern.compile("(num\\d+#-?\\d+@)+");
-            Matcher m = p.matcher(Operacja.KOMUNIKAT);
-
-            if(m.find()) {
-                p = Pattern.compile("-?\\d+");
-                m = p.matcher(m.group());
-
-                int count = 0;
-                while(m.find()) {
-                    count++;
-                    if (count % 2 == 0) {
-                        int temp = Integer.parseInt(m.group());
-                        sum_n.add((long) temp);
-                    }
-                }
-            }
-
-            OPER += "dodawanie@";
-            RESU_V = 0;
-
-            for(int i=0; i<sum_n.size(); i++) {
-                RESU_V += sum_n.get(i);
-            }
-        }
+        /*przekazanie wyniku do komunikatu*/
         RESU += RESU_V + "@";
+        /*przekazanie wyniku do komunikatu*/
+
     }
 
     String createMessage() {

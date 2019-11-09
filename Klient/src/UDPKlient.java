@@ -13,7 +13,7 @@ public class UDPKlient {
     //private static InetAddress IPAdress;
     private static InetAddress IPAdress;
 
-    private static final int PORT = 8001;
+    private static final int PORT = 8005;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket sendToPacket;
     private static byte[] buffer;
@@ -27,7 +27,6 @@ public class UDPKlient {
     static void setIPAdress(String adresIP) {
 
         try { //ustawienie adresu hosta
-           //IPAdress = InetAddress.getLocalHost(); //ustawienie ip hosta
          IPAdress = InetAddress.getByName(adresIP);//ustawienie ip hosta
 
         } catch (UnknownHostException uhEx) {
@@ -80,7 +79,6 @@ public class UDPKlient {
                 IDEN+="null@";
                 TIME+= Czas.getGodzina()+ "@";
 
-
                 messageToSend = OPER + STAT+ IDEN + TIME; //wiaodmość do wysłania
 
                 /* tworzenie do wysłania i wysyłanie datagramu */
@@ -88,7 +86,6 @@ public class UDPKlient {
                 datagramSocket.send(sendToPacket);
                 /* tworzenie do wysłania i wysyłanie datagramu */
                 System.out.println(messageToSend);
-
 
                 /* otrzymanie datagramu z id  */
                 receivedPacket = new DatagramPacket(buffer, buffer.length);
@@ -124,7 +121,6 @@ public class UDPKlient {
                 /* wyświetlenie wyniku*/
                if (choose==1 || choose ==2 || choose ==3 || choose==4) showResult(serverResponse);
                /* */
-                //System.out.println("Odpowiedź serwera: " + serverResponse);
 
             } while (choose != 0); //jeżeli wybor==0 komunikat close, zamknięcie gniazda
 
