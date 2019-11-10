@@ -72,7 +72,6 @@ public class Operacja {
             for (Long aLong : sum_n) {
                 RESU_V += aLong;
             }
-            RESU += RESU_V + "@";
         }
         else {
             int counter = 0;

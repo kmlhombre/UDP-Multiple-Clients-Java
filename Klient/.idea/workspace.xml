@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61d7a7ee-b331-40cb-a017-e42e437fd35a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/Czas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/MainKlientClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/MainKlientClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/UDPKlient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/UDPKlient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainKlientClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainKlientClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Serwer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Czas.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Czas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/UDPSerwer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/UDPSerwer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/Operacja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Serwer/src/UDPSerwer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/UDPSerwer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -110,6 +101,9 @@
       <workItem from="1573382091326" duration="64000" />
       <workItem from="1573382374670" duration="475000" />
       <workItem from="1573383045709" duration="18000" />
+      <workItem from="1573390101989" duration="227000" />
+      <workItem from="1573390488985" duration="45000" />
+      <workItem from="1573390601472" duration="53000" />
     </task>
     <servers />
   </component>
