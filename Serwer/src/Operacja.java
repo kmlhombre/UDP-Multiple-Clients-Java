@@ -4,19 +4,21 @@ import java.util.regex.Pattern;
 
 public class Operacja {
 
-    private String message;
+    private String message; //message to zmienna odpowiedzi serwera
     private String id_klient;
 
+    /*klucze wykorzystywane w komunikacie*/
     private static String OPER = "oper#";
     private static String STAT = "stat#";
     private static String IDEN = "iden#";
     private static String RESU = "resu#";
     private static String TIME = "time#";
 
+    /*zmienne pomocnicze przechowujace wartosci poszczegolnych kluczy*/
     private static int[] NUMS_V = new int[3];
     private static long RESU_V;
     private static long TIME_V;
-    private static String KOMUNIKAT;
+    private static String KOMUNIKAT; //komunikat odebrany przez serwer
 
     private static ArrayList<Long> sum_n = new ArrayList<Long>();
 
@@ -40,6 +42,9 @@ public class Operacja {
         RESU = "result#";
         TIME = "time#";
         sum_n.clear();
+        NUMS_V[0] = 0;
+        NUMS_V[1] = 0;
+        NUMS_V[2] = 0;
     }
 
     private void calculateResultAndGetOPERACJAString() {
@@ -115,6 +120,7 @@ public class Operacja {
 
     }
 
+    /*tworzenie odpowiedniej odpowiedzi serwera*/
     String createMessage() {
         STAT += "ok@";
         TIME+=Czas.getGodzina() + "@";

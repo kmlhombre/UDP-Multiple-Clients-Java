@@ -7,17 +7,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UDPSerwer {
-    private static final int PORT = 8005
-            ;
+    /*zmienne globalne wykorzystywane w transmisji*/
+    private static final int PORT = 8005;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket receivedPacket, sendToPacket;
     private static byte[] buffer;
     private static int BUFFER_SIZE = 256;
 
-    private static Boolean[] ID = new Boolean[16];
+    /*tablica dostepnych id - na potrzeby zadania zostalo zalozone ze max liczba klientow to 32*/
+    private static Boolean[] ID = new Boolean[32];
 
+    /*funkcja główna programu inicjalizujaca tablice z ID oraz otwierajaca port do transmisji*/
     public static void main(String[] args) {
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 32; i++) {
             ID[i] = false;
         }
 
@@ -31,9 +33,10 @@ public class UDPSerwer {
         handleClient();
     }
 
+    /*funkcja zwracajaca pierwsze dostepne ID dla klienta*/
     public static int getIdForUser() {
         int tempId = 0;
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 32; i++) {
             if (!ID[i]) {
                 tempId = i;
                 ID[i] = true;
@@ -43,6 +46,7 @@ public class UDPSerwer {
         return tempId;
     }
 
+    /*funkcja ustawiajaca ID ostatniego rozlaczonego klienta na dostepne*/
     public static void setIdEmpty(int id) {
         ID[id] = false;
     }
