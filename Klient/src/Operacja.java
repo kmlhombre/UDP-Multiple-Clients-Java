@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@SuppressWarnings("ALL")
 public class Operacja {
     private int wybor;
     private static String komunikat;
@@ -10,11 +11,13 @@ public class Operacja {
     private static int iloscLiczb;
     //id
     private static String id;
-
+    /*pola wykorzystywane w komunikacie */
     private static String OPER = "oper#";
     private static String STAT = "stat#null@";
     private static String IDEN = "iden#";
     private static String TIME = "time#";
+    /*pola wykorzystywane w komunikacie */
+
     private static String[] NUMS = new String[3];
     private static long[] tablicaLiczby = new long[3];
     private static ArrayList<Long> sum_n = new ArrayList<Long>();
@@ -28,13 +31,13 @@ public class Operacja {
         NUMS[0] = "num1#";
         NUMS[1] = "num2#";
         NUMS[2] = "num3#";
-        tablicaLiczby[0] = 1; // inicjalizacja jedynkami ( żeby nie aktywować petli dla dzielenia)
+        tablicaLiczby[0] = 1; // inicjalizacja jedynkami ( żeby nie aktywować pętli dla dzielenia)
         tablicaLiczby[1] = 1;
         tablicaLiczby[2] = 1;
         sumFlag = false;
     }
 
-    public static void setDefaultTextOfStatement() { //zresetowanie pola operacja i iden
+    public static void setDefaultTextOfStatement() { //przywrocenie wartości domyślnych dla pól
         OPER = "oper#";
         IDEN = "iden#";
         TIME = "time#";
@@ -76,7 +79,7 @@ public class Operacja {
     public String getKomunikat() { //tworzenie komunikatu do wysłania
 
         IDEN += id + "@"; //doklejenie do pola iden ID klienta
-        TIME += Czas.getGodzina() + "@";
+        TIME += Czas.getGodzina() + "@"; //uzyskanie identyfikatora czasu
 
         if (wybor == 0) {
             OPER += "close@";
@@ -84,7 +87,7 @@ public class Operacja {
             OPER += "dodawanie@";
             sumFlag = true;
             menuIloscLiczb();
-          //  getLiczby();
+
         } else if (wybor == 2) {//odejmowanie
             OPER += "odejmowanie@";
             getLiczby();
@@ -97,48 +100,43 @@ public class Operacja {
             getLiczby();
         }
         /*jeśl klient chce zamknąć sesję*/
-        if (OPER.equals("oper#close@")) {
-            komunikat = OPER + STAT + IDEN + TIME;
-        }
-        /*jeśl klient chce zamknąć sesję*/
+        if (OPER.equals("oper#close@")) komunikat = OPER + STAT + IDEN + TIME;
+            /*jeśl klient chce zamknąć sesję*/
 
-        /*jeśli klient chce wysłać komunikat*/
+            /*jeśli klient chce wysłać komunikat*/
         else {
             if (sumFlag && iloscLiczb != 3) { //jeśli operacja to dodawanie i jeśli jest wpisywane więcej niż 3 liczby
                 komunikat = OPER + STAT + IDEN;
-
-                for (int i = 0; i < sum_n.size(); i++) {
-                    komunikat += "num" + (i + 1) + "#" + sum_n.get(i) + "@";
-                }
-            } else {
-                komunikat = OPER + STAT + IDEN + NUMS[0] + NUMS[1] + NUMS[2];
-            }
+                for (int i = 0; i < sum_n.size(); i++) komunikat += "num" + (i + 1) + "#" + sum_n.get(i) + "@";
+            } else komunikat = OPER + STAT + IDEN + NUMS[0] + NUMS[1] + NUMS[2];
             komunikat += TIME;
         }
         /*jeśli klient chce wysłać komunikat*/
         setDefaultTextOfStatement(); //ustawienie domyślnych wartości dla pól
         return komunikat;
     }
-    private static void menuIloscLiczb(){
+
+    private static void menuIloscLiczb() {
         System.out.println("Wpisz 'a' jeśli chcesz wpisać trzy liczby");
         System.out.println("Wpisz 'n' jeśli chcesz wpisać n liczb");
         char opcja = userEntry.next().charAt(0);
 
-        /*jeśli klient wpisuje 3 liczby*/
-        if(opcja=='a'){
-            iloscLiczb=3;
+        /*jeśli klient wybierze 'a' wpisuje 3 liczby*/
+        if (opcja == 'a') {
+            iloscLiczb = 3;
         }
-        /*jeśli klient wpisuje 3 liczby*/
+        /*jeśli klient wybierze 'a' wpisuje 3 liczby*/
 
-        /*jeśli klient wpisuje n liczb*/
-        else if(opcja=='n'){
-            setIloscLiczb();
+        /*jeśli klient wybierze 'n' wpisuje n liczb*/
+        else if (opcja == 'n') {
+            setIloscLiczb(); //podanie ilości liczb do wpisania
         }
-        /*jeśli klient wpisuje n liczb*/
+        /*jeśli klient wybierze 'n' wpisuje n liczb*/
 
         getLiczby();
 
     }
+
     private static void setIloscLiczb() {
         System.out.println("Podaj ilosc liczb");
         iloscLiczb = userEntry.nextInt();
@@ -148,8 +146,8 @@ public class Operacja {
         System.out.println("Podaj trzy liczby");
         for (int i = 0; i < 3; ) {
             tablicaLiczby[i] = userEntry.nextLong();
-            /*warunek sprawdzajacy czy dana operacja jest dzieleniem lub, w przypadku dzielenia,
-             *sprawdza czy aktualnie ustawiana jest pierwsza liczba (w przypadku dzielenia moze być to 0)*/
+            /*warunek sprawdzajacy czy dana operacja jest dzieleniem
+             *w przypadku dzielenia, sprawdzenie czy aktualnie ustawiana jest pierwsza liczba (w przypadku dzielenia moze być to 0)*/
             if (!dzielenie) {
                 //wpisanie liczby do tablicy
                 NUMS[i] += tablicaLiczby[i] + "@";
@@ -183,12 +181,12 @@ public class Operacja {
         /*jeśli operacja to dodawanie i ilość liczb !=3 wykorzystanie tablicy dynamicznej*/
 
         /*jeśli ilość liczb jest równa 3 wykorzystaj tablicę statyczną*/
-            else{
-                setTrzyLiczby();
-            }
-        /*jeśli ilość liczb jest równa 3 wykorzystaj tablicę statyczną*/
+        else {
+            setTrzyLiczby();
         }
+        /*jeśli ilość liczb jest równa 3 wykorzystaj tablicę statyczną*/
     }
+}
 
 
 
