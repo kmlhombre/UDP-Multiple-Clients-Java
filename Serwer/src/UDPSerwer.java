@@ -7,16 +7,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UDPSerwer {
-    private static final int PORT = 8001;
+    /*zmienne globalne wykorzystywane w transmisji*/
+    private static final int PORT = 8005;
     private static DatagramSocket datagramSocket;
     private static DatagramPacket receivedPacket, sendToPacket;
     private static byte[] buffer;
-    private static int BUFFER_SIZE = 128;
+    private static int BUFFER_SIZE = 256;
 
-    private static Boolean[] ID = new Boolean[16];
+    /*tablica dostepnych id - na potrzeby zadania zostalo zalozone ze max liczba klientow to 32*/
+    private static Boolean[] ID = new Boolean[32];
 
+    /*funkcja główna programu inicjalizujaca tablice z ID oraz otwierajaca port do transmisji*/
     public static void main(String[] args) {
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 32; i++) {
             ID[i] = false;
         }
 
@@ -30,9 +33,10 @@ public class UDPSerwer {
         handleClient();
     }
 
+    /*funkcja zwracajaca pierwsze dostepne ID dla klienta*/
     public static int getIdForUser() {
         int tempId = 0;
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 32; i++) {
             if (!ID[i]) {
                 tempId = i;
                 ID[i] = true;
@@ -42,12 +46,14 @@ public class UDPSerwer {
         return tempId;
     }
 
+    /*funkcja ustawiajaca ID ostatniego rozlaczonego klienta na dostepne*/
     public static void setIdEmpty(int id) {
         ID[id] = false;
     }
 
     private static void handleClient() {
         try {
+
             String messageReceived, messageSendTo;
             InetAddress clientAddress = null; //ustawienie ip klienta
             int clientPort;
@@ -55,44 +61,41 @@ public class UDPSerwer {
             do {
                 buffer = new byte[BUFFER_SIZE];
                 receivedPacket = new DatagramPacket(buffer, buffer.length);
+
                 datagramSocket.receive(receivedPacket); //odebranie wiadomości od klienta
+                /* ---------------------*/
+
                 clientAddress = receivedPacket.getAddress(); //adres klienta
                 clientPort = receivedPacket.getPort(); //port klienta
-
                 messageReceived = new String(receivedPacket.getData(), 0, receivedPacket.getLength());
 
                 Operacja operacja = new Operacja(messageReceived);
                 messageSendTo = operacja.createMessage();
 
-                Pattern p = Pattern.compile("\\d\\d:\\d\\d");
-                Matcher m = p.matcher(messageReceived);
-                if(m.find()) {
-                    System.out.print("[" + m.group() + "] ");
-                }
                 System.out.print("[R] ");
                 System.out.print(clientAddress);
                 System.out.print(" : ");
                 System.out.println(messageReceived);
 
-                if (Pattern.compile("oper#CLOSE@").matcher(messageReceived).find()) {
+                System.out.print("[S] ");
+                System.out.print(clientAddress);
+                System.out.print(" : ");
+                System.out.println(messageSendTo);
+
+                if (Pattern.compile("oper#close@").matcher(messageReceived).find()) {
                     int temp;
-                    p = Pattern.compile("\\d+");
-                    m = p.matcher(messageReceived);
+                    Pattern p = Pattern.compile("\\d+");
+                    Matcher m = p.matcher(messageReceived);
                     if(m.find()) {
                         temp = Integer.parseInt(m.group());
                         setIdEmpty(temp);
                     }
                 }
-                else {
-                    System.out.print("[" + Czas.getGodzina() + "] ");
-                    System.out.print("[S] ");
-                    System.out.print(clientAddress);
-                    System.out.print(" : ");
-                    System.out.println(messageSendTo);
-                }
+
                 sendToPacket = new DatagramPacket(messageSendTo.getBytes(), messageSendTo.length(), clientAddress, clientPort); //stworzenie pakietu do wysłania
                 datagramSocket.send(sendToPacket); //wysłanie odpowiedzi do klienta
             } while (true);
+
         } catch (IOException ioEx) {
             ioEx.printStackTrace();
         } finally {

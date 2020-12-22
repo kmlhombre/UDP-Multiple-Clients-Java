@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d57ee84e-c36d-4976-bc30-2f70d50428c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Klient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/MainKlientClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/out/production/UDPKlient/MainKlientClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Klient/src/MainKlientClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Klient/src/MainKlientClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/Operacja.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Serwer/UDPSerwer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Serwer/UDPSerwer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Operacja.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,6 +16,10 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
+  </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="autoscrollToSource" value="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -44,7 +49,11 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Klient" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -110,7 +119,22 @@
       <workItem from="1571930007113" duration="599000" />
       <workItem from="1571930686791" duration="2630000" />
       <workItem from="1572022912273" duration="618000" />
-      <workItem from="1572023649582" duration="3039000" />
+      <workItem from="1572514331116" duration="2571000" />
+      <workItem from="1572518251474" duration="229000" />
+      <workItem from="1572522105495" duration="2117000" />
+      <workItem from="1572604192628" duration="45000" />
+      <workItem from="1572604344352" duration="2170000" />
+      <workItem from="1572706652895" duration="986000" />
+      <workItem from="1572712738029" duration="3382000" />
+      <workItem from="1573041852709" duration="24000" />
+      <workItem from="1573069182902" duration="598000" />
+      <workItem from="1573124512931" duration="191000" />
+      <workItem from="1573127812489" duration="1849000" />
+      <workItem from="1573130664572" duration="2915000" />
+      <workItem from="1573382157031" duration="3810000" />
+      <workItem from="1573390070945" duration="259000" />
+      <workItem from="1573390439094" duration="98000" />
+      <workItem from="1573390564922" duration="92000" />
     </task>
     <task id="LOCAL-00001" summary="latest commin - comments to id of clientc UDP SERVER CLASS">
       <created>1571825260078</created>

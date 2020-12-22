@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61d7a7ee-b331-40cb-a017-e42e437fd35a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/MainKlientClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/MainKlientClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UDPKlient/Operacja.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainKlientClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainKlientClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/Operacja.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Serwer/out/production/Serwer/UDPSerwer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/out/production/Serwer/UDPSerwer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Serwer/src/Operacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Serwer/src/Operacja.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,10 +35,12 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last.edited.regexp" value="oper#dodawanie@stat#ok@iden#0@result#33333341@time#1572535100124@" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Serwer" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -88,7 +89,21 @@
       <workItem from="1571930031887" duration="569000" />
       <workItem from="1571930817970" duration="2006000" />
       <workItem from="1572022844143" duration="677000" />
-      <workItem from="1572027287850" duration="948000" />
+      <workItem from="1572515569468" duration="1697000" />
+      <workItem from="1572518205918" duration="40000" />
+      <workItem from="1572522281266" duration="16000" />
+      <workItem from="1572604676755" duration="8000" />
+      <workItem from="1572605318832" duration="849000" />
+      <workItem from="1572607369591" duration="319000" />
+      <workItem from="1572712748756" duration="1345000" />
+      <workItem from="1572719855666" duration="609000" />
+      <workItem from="1573129986663" duration="3574000" />
+      <workItem from="1573382091326" duration="64000" />
+      <workItem from="1573382374670" duration="475000" />
+      <workItem from="1573383045709" duration="18000" />
+      <workItem from="1573390101989" duration="227000" />
+      <workItem from="1573390488985" duration="45000" />
+      <workItem from="1573390601472" duration="53000" />
     </task>
     <servers />
   </component>

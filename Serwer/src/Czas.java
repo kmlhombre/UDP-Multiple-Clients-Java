@@ -1,26 +1,9 @@
 import java.util.Calendar;
-
+//klasa pobiera czas który upłynął od stycznia 1970
 public class Czas {
     public Czas() {
     }
-    public static String getGodzina(){
-        Calendar now = Calendar.getInstance();
-        String time ="";
-        int h = now.get(Calendar.HOUR_OF_DAY);
-        int m = now.get(Calendar.MINUTE);
-        if(h < 10) {
-            time += "0" + h;
-        }
-        else {
-            time += h;
-        }
-        time += ":";
-        if(m < 10) {
-            time += "0" + m;
-        }
-        else {
-            time += m;
-        }
-        return time;
+    public static long getGodzina(){
+        return System.currentTimeMillis();
     }
 }
